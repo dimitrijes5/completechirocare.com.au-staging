@@ -1,0 +1,200 @@
+---
+export const prerender = false;
+
+import Sidebar from "../../components/Sidebar";
+import PrimaryLayout from "../../layouts/PrimaryLayout.astro";
+
+const { slug } = Astro.params;
+const baseUrl = import.meta.env.STRAPI_URL_TWO;
+const token = import.meta.env.ASTRO_APP_API_TOKEN_TWO;
+
+const response = await fetch(`${baseUrl}/api/posts?filters[Slug][$eq]=${slug}&populate=*`, {
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+});
+
+const { data } = await response.json();
+if (!data?.[0]) {
+  return Astro.redirect('/404');
+}
+
+const post = data[0];
+const title = post.Title;
+const content = post.Content;
+const image = post.FeaturedImg?.url ? `${baseUrl}${post.FeaturedImg.url}` : null;
+const imageAlt = post.FeaturedImg?.alternativeText || title;
+const date = post.createdAt || new Date().toISOString();
+
+// Extract SEO data
+const seoTitle = post.SeoTitle || title;
+const seoDescription = post.SeoDesc || title;
+const keywords = post.KeyWords?.map((keyword: any) => keyword.KeyWord).join(', ') || '';
+
+interface ContentChild {
+  type?: string;
+  text?: string;
+  bold?: boolean;
+  underline?: boolean;
+  italic?: boolean;
+  url?: string;
+  children?: ContentChild[];
+}
+
+interface ContentBlock {
+  type: string;
+  format?: 'ordered' | 'unordered';
+  children: ContentChild[];
+}
+
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const typedContent = content as ContentBlock[];
+
+const prevSlug = null;
+const nextSlug = null;
+---
+
+<PrimaryLayout title={seoTitle} description={seoDescription} keywords={keywords}>
+  <main class="max-w-[1360px] mx-auto xl:px-8 px-4 py-8 md:py-12">
+    <div class="flex flex-col md:flex-row gap-8">
+      <div class="w-full md:w-3/4">
+        <h1 class="text-3xl md:text-5xl capitalize font-medium mb-6 md:mb-8">{title}</h1>
+        <p class="text-gray-600 mb-4">{formattedDate}</p>
+        {image && (
+          <img 
+            src={image} 
+            alt={imageAlt} 
+            class="w-full mb-6 md:mb-8"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        )}
+        <div class="prose prose-sm md:prose max-w-none">
+          {typedContent && Array.isArray(typedContent) && typedContent.map((block: ContentBlock) => {
+            if (block.type === 'list') {
+              const ListTag = block.format === 'ordered' ? 'ol' : 'ul';
+              return (
+                <ListTag class="list-decimal ml-4 mb-4">
+                  {block.children.map((item: ContentChild) => (
+                    <li class="mb-2">
+                      {item.children?.map((child: ContentChild) => {
+                        if(child.type === 'link'){
+                          const href = child.url?.trim() || '';
+                          const isExternal = href.startsWith('http');
+                          return (
+                            <a 
+                              class="text-[#ED2278]" 
+                              href={href} 
+                              {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                            >
+                              {child.children ? child.children.map((sub: ContentChild) => (<span>{sub.text}</span>)) : child.text}
+                            </a>
+                          );
+                        }
+                        return child.bold ? 
+                          (child.underline ? <strong><u>{child.text}</u></strong> : <strong>{child.text}</strong>) : 
+                          (child.underline ? <u>{child.text}</u> : 
+                           (child.italic ? <em>{child.text}</em> : <span>{child.text}</span>));
+                      })}
+                    </li>
+                  ))}
+                </ListTag>
+              );
+            }
+            
+            return block?.children?.length && (
+              <p class="mb-4">
+                {block.children.map((child: ContentChild) => {
+                  if(child.type === 'link'){
+                    const href = child.url?.trim() || '';
+                    if(!href) { // fallback if no URL provided
+                      return <span>{child.text}</span>;
+                    }
+                    const isExternal = href.startsWith('http');
+                    return (
+                      <a 
+                        class="text-[#ED2278]" 
+                        href={href} 
+                        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      >
+                        {child.children ? child.children.map((sub: ContentChild) => (<span>{sub.text}</span>)) : child.text}
+                      </a>
+                    );
+                  }
+                  return child.bold ? 
+                    (child.underline ? <strong><u>{child.text}</u></strong> : <strong>{child.text}</strong>) : 
+                    (child.underline ? <u>{child.text}</u> : 
+                     (child.italic ? <em>{child.text}</em> : <span>{child.text}</span>));
+                })}
+              </p>
+            );
+          })}
+        </div>
+        
+        <!-- Homepage Link -->
+        <div class="mt-8 pb-4 border-b border-gray-200">
+          <p class="text-gray-600">
+            To learn more about our services, visit our 
+            <a href="/" class="text-[#ED2278] hover:underline">homepage</a>.
+          </p>
+        </div>
+
+        <!-- Navigation Buttons -->
+         <div class="flex flex-col sm:flex-row justify-between gap-4 mt-8 md:mt-12 w-full">
+          {prevSlug && (
+            <a 
+              href={`/blog/${prevSlug}`}
+              class="flex items-center justify-center sm:justify-start gap-2 px-4 md:px-6 py-2 rounded hover:bg-primary/90 hover:text-white transition-colors group border border-gray-200 sm:border-none"
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="16" 
+                height="16" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                class="group-hover:translate-x-[-4px] transition-transform"
+              >
+                <path d="m15 18-6-6 6-6"/>
+              </svg>
+              Previous Post
+            </a>
+          )}
+          {nextSlug && (
+            <a 
+              href={`/blog/${nextSlug}`}
+              class="flex items-center justify-center sm:justify-end gap-2 px-4 md:px-6 py-2 rounded hover:bg-primary/90 hover:text-white transition-colors sm:ml-auto group border border-gray-200 sm:border-none"
+            >
+              Next Post
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="16" 
+                height="16" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+                class="group-hover:translate-x-[4px] transition-transform"
+              >
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </a>
+          )}
+        </div> 
+      </div>
+      
+      <Sidebar client:only="react" />
+    </div>
+  </main>
+</PrimaryLayout>

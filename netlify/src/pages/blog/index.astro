@@ -1,0 +1,77 @@
+---
+
+
+import Sidebar from "../../components/Sidebar.tsx";
+import PrimaryLayout from "../../layouts/PrimaryLayout.astro";
+
+const baseUrl = import.meta.env.STRAPI_URL_TWO;
+const token = import.meta.env.ASTRO_APP_API_TOKEN_TWO;
+
+// Updated to get all posts with pagination
+const response = await fetch(`${baseUrl}/api/posts?populate=*&pagination[pageSize]=100`, {
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+});
+
+const result = await response.json();
+console.log('API Response:', result); // Debug log
+
+if (!result.data) {
+  console.error('Invalid API response:', result);
+  throw new Error('Invalid API response');
+}
+
+const { data } = result;
+
+const PLACEHOLDER_IMAGE = 'https://placehold.co/600x400?text=TechiroCare';
+
+const blogPosts = data.map((post: any) => ({
+  title: post.Title,
+  image: post.FeaturedImg?.url ? `${baseUrl}${post.FeaturedImg.url}` : PLACEHOLDER_IMAGE,
+  imageAlt: post.FeaturedImg?.alternativeText || post.Title,
+  excerpt: post.Content[0]?.children?.[0]?.text?.slice(0, 150) + '...' || 'No excerpt available',
+  slug: post.Slug
+}));
+
+// Debug log
+console.log(`Total posts fetched: ${blogPosts.length}`);
+---
+
+<PrimaryLayout>
+  <main class="max-w-[1360px] mx-auto xl:px-8 px-4 py-8 md:py-12">
+    <h1 class="text-2xl md:text-7xl w-full text-center font-bold mb-1">YOUR CHIROPRACTORS <span class="text-primary">BLOG</span> </h1>
+     <h2 class="w-full text-center text-1xl md:text-4xl font-medium mb-8 md:mb-12">Welcome</h2>
+    <div class="flex flex-col md:flex-row gap-8">
+      <div class="w-full md:w-3/4">
+        <div class="columns-1 md:columns-2 gap-4 md:gap-8 [column-fill:_balance] space-y-4 md:space-y-8">
+          {blogPosts.map((post: { title: string; image: string; imageAlt: string; excerpt: string; slug: string }) => (
+            <div class="break-inside-avoid">
+              <a href={`/blog/${post.slug}`} class="border rounded-lg overflow-hidden shadow-sm transition-transform duration-300 hover:shadow-md hover:-translate-y-1 block bg-white">
+                <div class="aspect-w-16 aspect-h-9">
+                  <img 
+                    src={post.image} 
+                    alt={post.imageAlt} 
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-4 md:p-5">
+                  <h2 class="text-lg md:text-xl font-bold mb-3 line-clamp-2 hover:text-primary">{post.title}</h2>
+                  <p class="text-gray-600 text-sm md:text-base mb-3 line-clamp-3">{post.excerpt}</p>
+                  <span class="text-primary font-medium inline-flex items-center">
+                    Read More 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+      <Sidebar client:only="react" />
+    </div>
+  </main>
+</PrimaryLayout>

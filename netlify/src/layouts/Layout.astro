@@ -1,0 +1,80 @@
+---
+export const prerender = true;
+
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.jsx";
+
+// Fetch approach pages data (similar to PrimaryLayout)
+const baseUrl = import.meta.env.STRAPI_URL_TWO;
+const token = import.meta.env.ASTRO_APP_API_TOKEN_TWO;
+
+const response = await fetch(`${baseUrl}/api/approach-pages`, {
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+});
+
+const { data } = await response.json();
+const approachItems = data.map((page: any) => ({
+  slug: page.Slug,
+  title: page.Title
+}));
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+// Add null checks and string sanitization
+const { 
+    title = "Complete Chiro Care - Professional Chiropractic Services",
+    description = "Professional chiropractic care services offering personalized treatment plans, pain management, and holistic wellness solutions for optimal health."
+} = Astro.props;
+
+// Sanitize the SEO content
+const sanitizedTitle = title?.trim() || "Complete Chiro Care - Professional Chiropractic Services";
+const sanitizedDescription = description?.trim() || "Professional chiropractic care services offering personalized treatment plans, pain management, and holistic wellness solutions for optimal health.";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO Meta Tags -->
+		<title>{sanitizedTitle}</title>
+		<meta name="description" content={sanitizedDescription} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={sanitizedTitle} />
+		<meta property="og:description" content={sanitizedDescription} />
+		<meta property="og:url" content={Astro.url} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:title" content={sanitizedTitle} />
+		<meta property="twitter:description" content={sanitizedDescription} />
+		
+		<!-- Additional SEO tags -->
+		<link rel="canonical" href={Astro.url} />
+		<meta name="robots" content="index, follow" />
+	</head>
+	<body>
+		<Nav client:load approachItems={approachItems} />
+		<slot />
+		<Footer />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

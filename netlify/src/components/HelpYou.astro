@@ -1,0 +1,58 @@
+---
+import Title from "./ui/Title.astro";
+const { helpData } = Astro.props;
+const baseUrl = import.meta.env.STRAPI_URL_TWO;
+const youtubeUrl = "https://youtu.be/0CbxpVtEe1g";
+---
+
+<div class="relative">
+  <section class="bg-darkpurple pb-14">
+    <div class="max-w-[1860px] mx-auto px-4 xl:px-8 overflow-hidden">
+      <div class="flex gap-9 max-xl:flex-col max-xl:gap-0">
+        <!-- Left Column -->
+        <div class="text-white w-1/2 max-xl:w-full max-xl:text-center max-xl:flex max-xl:flex-col max-xl:items-center">
+          <Title text="Expert Chiropractors" className="mt-14 mb-3 max-xl:self-center" />
+          <h1 class="font-bold xl:text-4xl text-2xl">{helpData.Title}</h1>
+          <p class="text-lg max-sm:text-base mt-5">
+            {helpData.Sentance1}
+          </p>
+          <p class="text-lg max-sm:text-base mt-5">
+            {helpData.Sentance2}
+          </p>
+          <div class="w-full flex justify-start mt-10 max-xl:mt-6 max-xl:justify-center">
+            <button 
+              class="bg-primary text-white text-nowrap px-6 py-2 flex justify-center items-center w-[254px] h-[60px] font-bold text-lg max-sm:text-base rounded-2xl rounded-bl-none transition-all duration-300 hover:bg-opacity-90 "
+              onclick={`window.location.href='tel:${helpData.PhoneNumber}'`}
+            >
+              <img src="/phone.svg" alt="Logo" class="h-6 mt-0.5 mr-3 w-auto" loading="lazy">
+              Call Us {helpData.PhoneNumber}
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="relative w-1/2 max-xl:w-full">
+          <div class="aspect-[4/3] relative group cursor-pointer">
+            <img 
+              src={`${baseUrl}${helpData.img.url}`} 
+              alt={helpData.img.alternativeText || "team"} 
+              class="w-full h-[90%] absolute inset-0 object-cover rounded-br-none mb-5 mt-7 rounded-tr-[200px] max-xl:rounded-tr-[130px] rounded-bl-[120px] max-xl:rounded-l-[60px] rounded-[100px] transition-transform duration-300 group-hover:scale-[1.02]"
+              loading="lazy"
+            />
+            <!-- YouTube Play Button with updated onclick -->
+            <img 
+              src="/yy.png" 
+              alt="Play Video" 
+              onclick={`window.open('https://www.youtube.com/watch?v=0CbxpVtEe1g&feature=youtu.be', '_blank')`}
+              class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 transition-transform duration-300 group-hover:scale-110"
+              loading="lazy"
+            />
+            <span class="absolute py-2 px-4 max-xl:py-3 bg-primary font-semibold text-lg text-white rounded-xl xl:left-[39%] rounded-bl-none max-sm:text-xs w-auto h-auto bottom-[10px] max-xl:-bottom-0 left-[50%] translate-x-[-50%] text-nowrap">
+              Advanced Biostructural Correction Technique
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,111 @@
+---
+export const prerender = false;
+
+import CallToAction from "../../components/CallToAction.astro";
+import Sidebar from "../../components/Sidebar";
+import PrimaryLayout from "../../layouts/PrimaryLayout.astro";
+
+const { slug } = Astro.params;
+const baseUrl = import.meta.env.STRAPI_URL_TWO;
+const token = import.meta.env.ASTRO_APP_API_TOKEN_TWO;
+
+const response = await fetch(`${baseUrl}/api/approach-pages?filters[Slug][$eq]=${slug}&populate=*`, {
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+});
+
+const { data } = await response.json();
+if (!data?.[0]) {
+  return Astro.redirect('/404');
+}
+
+const page = data[0];
+const title = page.Title;
+const content = page.Content;
+const image = page.FeaturedImage?.url ? `${baseUrl}${page.FeaturedImage.url}` : null;
+const imageAlt = page.FeaturedImage?.alternativeText || title;
+
+// Extract SEO data
+const seoTitle = page.SeoTitle || title;
+const seoDescription = page.SeoDesc || title;
+const keywords = page.ApproachKeyWords?.map((ApproachKeyWord : any) => ApproachKeyWord.KeyWord).join(', ') || '';
+---
+
+<PrimaryLayout title={seoTitle} description={seoDescription} keywords={keywords}>
+  <CallToAction />
+  <main class="max-w-[1360px] mx-auto xl:px-8 px-4 py-12">
+    {title && <h1 class="text-5xl capitalize font-bold mb-20">{title}</h1>}
+    <div class="flex flex-col md:flex-row gap-8">
+      <div class="md:w-3/4">
+        {image && <img src={image} alt={imageAlt} class="w-full mb-8" />}
+        <div class="prose prose-sm md:prose max-w-none">
+          {content && Array.isArray(content) && content.map((block: any) => {
+            if (block.type === 'list') {
+              const ListTag = block.format === 'ordered' ? 'ol' : 'ul';
+              return (
+                <ListTag class="list-decimal ml-4 mb-4">
+                  {block.children.map((item: any) => (
+                    <li class="mb-2">
+                      {item.children.map((child: any) => {
+                        if(child.type === 'link'){
+                          const href = child.url?.trim() || '';
+                          if(!href){
+                            return <span>{child.text}</span>;
+                          }
+                          const isExternal = href.startsWith('http');
+                          return (
+                            <a 
+                              class="text-[#ED2278]" 
+                              href={href} 
+                              {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                            >
+                              {child.children ? child.children.map((sub: any) => (<span>{sub.text}</span>)) : child.text}
+                            </a>
+                          );
+                        }
+                        return child.bold ? 
+                          (child.underline ? <strong><u>{child.text}</u></strong> : <strong>{child.text}</strong>) : 
+                          (child.underline ? <u>{child.text}</u> : 
+                           (child.italic ? <em>{child.text}</em> : <span>{child.text}</span>));
+                      })}
+                    </li>
+                  ))}
+                </ListTag>
+              );
+            }
+            
+            return block?.children && block.children.length > 0 && (
+              <p class="mb-4">
+                {block.children.map((child: any) => {
+                  if(child.type === 'link'){
+                    const href = child.url?.trim() || '';
+                    if(!href){
+                      return <span>{child.text}</span>;
+                    }
+                    const isExternal = href.startsWith('http');
+                    return (
+                      <a 
+                        class="text-[#ED2278]" 
+                        href={href} 
+                        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      >
+                        {child.children ? child.children.map((sub: any) => (<span>{sub.text}</span>)) : child.text}
+                      </a>
+                    );
+                  }
+                  return child.bold ? 
+                    (child.underline ? <strong><u>{child.text}</u></strong> : <strong>{child.text}</strong>) : 
+                    (child.underline ? <u>{child.text}</u> : 
+                     (child.italic ? <em>{child.text}</em> : <span>{child.text}</span>));
+                })}
+              </p>
+            );
+          })}
+        </div>
+      </div>
+      
+      <Sidebar client:only="react" />
+    </div>
+  </main>
+</PrimaryLayout>
