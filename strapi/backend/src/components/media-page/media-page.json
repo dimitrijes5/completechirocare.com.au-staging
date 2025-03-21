@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_media_page_media_pages",
+  "info": {
+    "displayName": "MediaPage"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "vediolink": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

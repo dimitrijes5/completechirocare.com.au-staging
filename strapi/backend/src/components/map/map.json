@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_map_maps",
+  "info": {
+    "displayName": "Map"
+  },
+  "options": {},
+  "attributes": {
+    "HoursTitle": {
+      "type": "string"
+    },
+    "backgorund": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Hours": {
+      "type": "json"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "landing": {
+      "type": "dynamiczone",
+      "components": [
+        "hero-component.hero-component",
+        "about.about",
+        "slider-animation.slider-animation",
+        "why-choose.why-choose",
+        "let-us-help-you.let-us-help-you",
+        "featured-section.featured-section",
+        "services.services",
+        "goals.goals",
+        "map.map",
+        "last-section.last-section",
+        "consultation.consultation",
+        "teams-part.teams-part"
+      ]
+    },
+    "About": {
+      "type": "dynamiczone",
+      "components": [
+        "about-main.about-main",
+        "diffrence.diffrence",
+        "visible-results-about.visible-results-about"
+      ]
+    },
+    "team": {
+      "type": "dynamiczone",
+      "components": [
+        "our-team-section.our-team-section"
+      ]
+    },
+    "event": {
+      "type": "dynamiczone",
+      "components": [
+        "event.event"
+      ]
+    },
+    "Media": {
+      "type": "dynamiczone",
+      "components": [
+        "media-part.media-part"
+      ]
+    },
+    "message": {
+      "type": "dynamiczone",
+      "components": [
+        "message-page.message-page"
+      ]
+    },
+    "Contact": {
+      "type": "dynamiczone",
+      "components": [
+        "contact-page.contact-page"
+      ]
+    },
+    "approach": {
+      "type": "dynamiczone",
+      "components": [
+        "approach.approach",
+        "what-to-expect.what-to-expect"
+      ]
+    },
+    "Treatments": {
+      "type": "dynamiczone",
+      "components": [
+        "treatments.treatments"
+      ]
+    }
+  }
+}

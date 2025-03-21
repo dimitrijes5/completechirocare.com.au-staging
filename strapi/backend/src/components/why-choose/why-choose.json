@@ -1,0 +1,57 @@
+{
+  "collectionName": "components_why_choose_why_chooses",
+  "info": {
+    "displayName": "whyChoose"
+  },
+  "options": {},
+  "attributes": {
+    "firstTitle": {
+      "type": "string"
+    },
+    "firstDesc": {
+      "type": "string"
+    },
+    "firstIcon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "secondTitle": {
+      "type": "string"
+    },
+    "secondDesc": {
+      "type": "string"
+    },
+    "secondIcon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "ThirdTitle": {
+      "type": "string"
+    },
+    "ThirdDesc": {
+      "type": "string"
+    },
+    "ThirdIcon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "collectionName": "components_team_page_team_pages",
+  "info": {
+    "displayName": "teamPage"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "member1Title": {
+      "type": "string"
+    },
+    "member1Job": {
+      "type": "string"
+    },
+    "member1Desc": {
+      "type": "string"
+    },
+    "member2Title": {
+      "type": "string"
+    },
+    "member1Img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "member2Job": {
+      "type": "string"
+    },
+    "member2Desc": {
+      "type": "string"
+    },
+    "member2Img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "member3Title": {
+      "type": "string"
+    },
+    "member3Job": {
+      "type": "string"
+    },
+    "member3Desc": {
+      "type": "string"
+    },
+    "member3Img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "member4Title": {
+      "type": "string"
+    },
+    "member4Job": {
+      "type": "string"
+    },
+    "member4Desc": {
+      "type": "string"
+    },
+    "member4Img": {
+      "type": "string"
+    },
+    "CTA": {
+      "type": "string"
+    }
+  }
+}

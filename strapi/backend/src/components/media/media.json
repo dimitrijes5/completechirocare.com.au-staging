@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_media_media",
+  "info": {
+    "displayName": "Media"
+  },
+  "options": {},
+  "attributes": {
+    "vediolink": {
+      "type": "string"
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Content": {
+      "type": "blocks"
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "collectionName": "components_teams_section_teams_sections",
+  "info": {
+    "displayName": "teamsSection"
+  },
+  "options": {},
+  "attributes": {
+    "FirstTitle": {
+      "type": "string"
+    },
+    "MainTitle": {
+      "type": "string"
+    },
+    "memberOneName": {
+      "type": "string"
+    },
+    "memberOneJob": {
+      "type": "string"
+    },
+    "memberOneImg": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "memberTwoName": {
+      "type": "string"
+    },
+    "memberTwoJob": {
+      "type": "string"
+    },
+    "memberTwoImg": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "memberThreeName": {
+      "type": "string"
+    },
+    "memberThreeJob": {
+      "type": "string"
+    },
+    "memberThreeImg": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "memberFourName": {
+      "type": "string"
+    },
+    "memberFourJob": {
+      "type": "string"
+    },
+    "memberFourImg": {
+      "type": "string"
+    },
+    "memberFiveName": {
+      "type": "string"
+    },
+    "memberFiveJob": {
+      "type": "string"
+    },
+    "memberFiveImg": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "memberSixName": {
+      "type": "string"
+    },
+    "memberSixJob": {
+      "type": "string"
+    },
+    "memberSixImg": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "memberSevenName": {
+      "type": "string"
+    },
+    "memberSevenJob": {
+      "type": "string"
+    },
+    "memberSevenImg": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

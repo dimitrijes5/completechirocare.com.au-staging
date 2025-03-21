@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_let_us_help_you_let_us_help_yous",
+  "info": {
+    "displayName": "LetUSHelpYou"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Sentance1": {
+      "type": "text"
+    },
+    "Sentance2": {
+      "type": "text"
+    },
+    "PhoneNumber": {
+      "type": "string"
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

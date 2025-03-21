@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_message_page_message_pages",
+  "info": {
+    "displayName": "MessagePage"
+  },
+  "options": {},
+  "attributes": {
+    "WhyMessage": {
+      "type": "json"
+    },
+    "Team": {
+      "type": "json"
+    },
+    "Components": {
+      "displayName": "Components",
+      "type": "component",
+      "repeatable": true,
+      "component": "components.components"
+    }
+  }
+}

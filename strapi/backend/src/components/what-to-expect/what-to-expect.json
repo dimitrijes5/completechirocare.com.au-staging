@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_what_to_expect_what_to_expects",
+  "info": {
+    "displayName": "WhatToExpect"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Desc": {
+      "type": "string"
+    },
+    "title1": {
+      "type": "string"
+    },
+    "desc1": {
+      "type": "blocks"
+    },
+    "title2": {
+      "type": "string"
+    },
+    "desc2": {
+      "type": "blocks"
+    },
+    "title3": {
+      "type": "string"
+    },
+    "desc3": {
+      "type": "blocks"
+    },
+    "title4": {
+      "type": "string"
+    },
+    "desc4": {
+      "type": "blocks"
+    },
+    "CTA": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "collectionName": "components_diffrence_diffrences",
+  "info": {
+    "displayName": "Diffrence"
+  },
+  "options": {},
+  "attributes": {
+    "Title1": {
+      "type": "string"
+    },
+    "Title2": {
+      "type": "string"
+    },
+    "VideoTitel": {
+      "type": "string"
+    },
+    "VideoDesc": {
+      "type": "string"
+    },
+    "VideoLink": {
+      "type": "string"
+    },
+    "journeyTitleStep1": {
+      "type": "string"
+    },
+    "journeyDescStep1": {
+      "type": "text"
+    },
+    "journeyTitleStep2": {
+      "type": "string"
+    },
+    "journeyDescStep2": {
+      "type": "text"
+    },
+    "journeyTitleStep3": {
+      "type": "string"
+    },
+    "journeyDescStep3": {
+      "type": "string"
+    },
+    "CTA": {
+      "type": "string"
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "journeyTitleStep4": {
+      "type": "string"
+    },
+    "journeyDescStep4": {
+      "type": "string"
+    },
+    "journeyTitleStep5": {
+      "type": "string"
+    },
+    "journeyDescStep5": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_treatments_treatments",
+  "info": {
+    "displayName": "Treatments"
+  },
+  "options": {},
+  "attributes": {
+    "CTA": {
+      "type": "string"
+    },
+    "Type": {
+      "displayName": "Type",
+      "type": "component",
+      "repeatable": true,
+      "component": "type.type"
+    }
+  }
+}

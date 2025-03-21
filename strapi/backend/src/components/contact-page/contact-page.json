@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_contact_page_contact_pages",
+  "info": {
+    "displayName": "contactPage"
+  },
+  "options": {},
+  "attributes": {
+    "PageTitle": {
+      "type": "string"
+    },
+    "Submitbtn": {
+      "type": "string"
+    },
+    "img1": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "mapTitle": {
+      "type": "string"
+    },
+    "adress": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    }
+  }
+}

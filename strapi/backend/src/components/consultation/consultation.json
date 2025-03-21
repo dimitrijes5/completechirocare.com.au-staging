@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_consultation_consultations",
+  "info": {
+    "displayName": "Consultation"
+  },
+  "options": {},
+  "attributes": {
+    "firstTitle": {
+      "type": "string"
+    },
+    "MainTitle": {
+      "type": "string"
+    },
+    "FirstSentance": {
+      "type": "text"
+    },
+    "SecondSentance": {
+      "type": "text"
+    },
+    "CTA1": {
+      "type": "string"
+    },
+    "CTA2": {
+      "type": "string"
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

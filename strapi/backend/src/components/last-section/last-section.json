@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_last_section_last_sections",
+  "info": {
+    "displayName": "LastSection"
+  },
+  "options": {},
+  "attributes": {
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "number": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "string"
+    },
+    "CTA": {
+      "type": "string"
+    }
+  }
+}

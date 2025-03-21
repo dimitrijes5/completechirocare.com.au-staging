@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_about_main_about_mains",
+  "info": {
+    "displayName": "AboutMain"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "CTA": {
+      "type": "text"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "collectionName": "components_goals_goals",
+  "info": {
+    "displayName": "goals"
+  },
+  "options": {},
+  "attributes": {
+    "firstTitle": {
+      "type": "string"
+    },
+    "mainTitle": {
+      "type": "string"
+    },
+    "title1": {
+      "type": "string"
+    },
+    "desc1": {
+      "type": "text"
+    },
+    "img1": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "title2": {
+      "type": "string"
+    },
+    "desc2": {
+      "type": "text"
+    },
+    "img2": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "title3": {
+      "type": "string"
+    },
+    "desc3": {
+      "type": "text"
+    },
+    "img3": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

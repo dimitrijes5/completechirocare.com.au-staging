@@ -1,0 +1,64 @@
+{
+  "collectionName": "components_approach_approaches",
+  "info": {
+    "displayName": "approach"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "string"
+    },
+    "videoLink": {
+      "type": "string"
+    },
+    "title1": {
+      "type": "string"
+    },
+    "desc1": {
+      "type": "string"
+    },
+    "title2": {
+      "type": "string"
+    },
+    "desc2": {
+      "type": "string"
+    },
+    "title3": {
+      "type": "string"
+    },
+    "desc3": {
+      "type": "string"
+    },
+    "FirstDesc3": {
+      "type": "string"
+    },
+    "SecondDesc3": {
+      "type": "text"
+    },
+    "title4": {
+      "type": "string"
+    },
+    "firstDesc4": {
+      "type": "string"
+    },
+    "SecondDesc4": {
+      "type": "string"
+    },
+    "CTA": {
+      "type": "string"
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

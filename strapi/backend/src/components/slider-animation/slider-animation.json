@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_slider_animation_slider_animations",
+  "info": {
+    "displayName": "SliderAnimation"
+  },
+  "options": {},
+  "attributes": {
+    "treatments": {
+      "type": "json"
+    }
+  }
+}
