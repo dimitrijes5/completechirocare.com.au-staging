@@ -1,0 +1,24 @@
+{
+    "landing": [
+    {
+      "__component": "hero-component.hero-component",
+      "Title": "Welcome to Complete Chiro Care",
+      "desc": "Your Path to Wellness Begins Here",
+      "Welcoming": "Welcome to Complete Chiro Care",
+      "CTA1": "Book Now",
+      "CTA2": "Learn More About Us",
+      "HowItWorks": "How It Works",
+      "background": null
+    },
+    {
+        "__component": "about.about",
+        "Title": "About Us",
+        "FirstSentence": "Our commitment to providing exceptional chiropractic care spans years of dedicated service.",
+        "SecondSentence": "We combine traditional techniques with modern approaches to ensure optimal results for our patients.",
+        "CTA": "Learn More About Us",
+        "img1": null,
+        "img2": null,
+        "img3": null
+      }
+    ]
+  }

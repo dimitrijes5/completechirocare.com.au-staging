@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const ADMIN_API_TOKEN = "4572351f60f82cf89a1879b9b60cc925fe8d543affd5cbab68db1f7df4a423e8e3c2bdc5ad4f5c29167abc132bbf889e2fe027575483eb527a07959e176fc4afb43e915f4ce7806cc2e18956fad7ed1b52e7a2cc41f4a304579fdf604ba5119e26543037b99b58e01721b2d9bd2f26f8695588307db3d8790afa2cf9b927f69a";
 const STRAPI_URL = "http://localhost:1337";
 
@@ -47,34 +49,7 @@ async function createPage(pageData) {
    */
   (async () => {
     // Example data array structured according to Strapi schema
-    const pagesToInsert = [
-      {
-        Contact: [
-          {
-            __component: "contact-page.contact-page",
-            PageTitle: "Location 1",
-            mapTitle: "Map for Location 1",
-            adress: "1234 Main St",
-            phone: "555-1234",
-            email: "contact@example.com",
-            Submitbtn: "Contact Us"
-          }
-        ]
-      },
-      {
-        Contact: [
-          {
-            __component: "contact-page.contact-page",
-            PageTitle: "Location 2",
-            mapTitle: "Map for Location 2",
-            adress: "5678 Elm St",
-            phone: "555-5678",
-            email: "contact2@example.com",
-            Submitbtn: "Contact Us"
-          }
-        ]
-      }
-    ];
+    const pagesToInsert = [JSON.parse(fs.readFileSync("data.json", "utf8"))];
   
     try {
       // Insert the pages
