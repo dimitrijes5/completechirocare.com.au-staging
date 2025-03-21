@@ -1,0 +1,71 @@
+
+# Node modules
+
+node_modules/
+
+# Environment variables
+
+.env
+
+.env.*
+
+!.env.example
+
+# Build outputs
+
+dist/
+
+build/
+
+.output/
+
+# Logs
+
+logs/
+
+*.log
+
+npm-debug.log*
+
+yarn-debug.log*
+
+yarn-error.log*
+
+# Editor directories and files
+
+.idea/
+
+.vscode/
+
+*.suo
+
+.ntvs
+
+*.njsproj
+
+*.sln
+
+*.sw?
+
+# OS files
+
+.DS_Store
+
+Thumbs.db
+
+# Strapi specific
+
+.tmp/
+
+.cache/
+
+.strapi-updater.json
+
+# Astro specific
+
+.astro/
+
+# Netlify specific
+
+.netlify/
+
