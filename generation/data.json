@@ -10,7 +10,60 @@
         "CTA2": "Call Us Now",
         "HowItWorks": "See How It Works",
         "background": {
-          "url": "hero_background_16f861688b.jpg"
+          "url": "/uploads/about1_533937e8d9.png",
+          "id": 9,
+          "width": 1105,
+          "height": 473,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_about1.png",
+              "hash": "thumbnail_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 245,
+              "height": 105,
+              "size": 56.44,
+              "sizeInBytes": 56440,
+              "url": "/uploads/thumbnail_about1_533937e8d9.png"
+            },
+            "small": {
+              "name": "small_about1.png",
+              "hash": "small_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 500,
+              "height": 214,
+              "size": 203.67,
+              "sizeInBytes": 203669,
+              "url": "/uploads/small_about1_533937e8d9.png"
+            },
+            "medium": {
+              "name": "medium_about1.png",
+              "hash": "medium_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 750,
+              "height": 321,
+              "size": 431.61,
+              "sizeInBytes": 431606,
+              "url": "/uploads/medium_about1_533937e8d9.png"
+            },
+            "large": {
+              "name": "large_about1.png",
+              "hash": "large_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 1000,
+              "height": 428,
+              "size": 724.58,
+              "sizeInBytes": 724579,
+              "url": "/uploads/large_about1_533937e8d9.png"
+            }
+          }
         }
       },
       {
@@ -20,117 +73,85 @@
         "SecondSentence": "As the leading chiropractic clinic in Sydney's Northern Beaches, our chiropractors have an extensive range of experience across multiple treatment modalities. Ours is one of the few Australian clinics to offer Advanced Biostructural Correction (ABC). This treatment method is known to gradually unwind previous injuries and traumas and can help you optimise your health. At Complete Chiropractic, we target pain and injuries at their source. We take a holistic approach to help you achieve better health. Alongside our breakthrough range of chiropractic treatments, we'll address your lifestyle habits, posture, and diet to enhance your wellness and bring you closer to reducing chronic pain.",
         "CTA": "Read More",
         "img1": {
-          "url": "https://complete.testingweblink.com/uploads/about2_a6c4522454.png"
-        },
-        "img2": {
-          "url": "/uploads/hero_background_8e42f63de1.jpg",
-          "id": 4,
-          "width": 2459,
-          "height": 3688,
+          "url": "/uploads/about1_533937e8d9.png",
+          "id": 9,
+          "width": 1105,
+          "height": 473,
           "formats": {
             "thumbnail": {
-              "name": "thumbnail_hero-background.jpg",
-              "hash": "thumbnail_hero_background_8e42f63de1",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
+              "name": "thumbnail_about1.png",
+              "hash": "thumbnail_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
               "path": null,
-              "width": 104,
-              "height": 156,
-              "size": 3.78,
-              "sizeInBytes": 3779,
-              "url": "/uploads/thumbnail_hero_background_8e42f63de1.jpg"
+              "width": 245,
+              "height": 105,
+              "size": 56.44,
+              "sizeInBytes": 56440,
+              "url": "/uploads/thumbnail_about1_533937e8d9.png"
             },
             "small": {
-              "name": "small_hero-background.jpg",
-              "hash": "small_hero_background_8e42f63de1",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
-              "path": null,
-              "width": 333,
-              "height": 500,
-              "size": 26.78,
-              "sizeInBytes": 26779,
-              "url": "/uploads/small_hero_background_8e42f63de1.jpg"
-            },
-            "medium": {
-              "name": "medium_hero-background.jpg",
-              "hash": "medium_hero_background_8e42f63de1",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
+              "name": "small_about1.png",
+              "hash": "small_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
               "path": null,
               "width": 500,
-              "height": 750,
-              "size": 55.08,
-              "sizeInBytes": 55082,
-              "url": "/uploads/medium_hero_background_8e42f63de1.jpg"
+              "height": 214,
+              "size": 203.67,
+              "sizeInBytes": 203669,
+              "url": "/uploads/small_about1_533937e8d9.png"
+            },
+            "medium": {
+              "name": "medium_about1.png",
+              "hash": "medium_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 750,
+              "height": 321,
+              "size": 431.61,
+              "sizeInBytes": 431606,
+              "url": "/uploads/medium_about1_533937e8d9.png"
             },
             "large": {
-              "name": "large_hero-background.jpg",
-              "hash": "large_hero_background_8e42f63de1",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
+              "name": "large_about1.png",
+              "hash": "large_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
               "path": null,
-              "width": 666,
-              "height": 1000,
-              "size": 91.56,
-              "sizeInBytes": 91564,
-              "url": "/uploads/large_hero_background_8e42f63de1.jpg"
+              "width": 1000,
+              "height": 428,
+              "size": 724.58,
+              "sizeInBytes": 724579,
+              "url": "/uploads/large_about1_533937e8d9.png"
             }
           }
         },
+        "img2": {
+          "url": "/uploads/about2_2001329401.png",
+          "id": 10,
+          "width": 157,
+          "height": 156,
+          "formats": null
+        },
         "img3": {
-          "url": "/uploads/hero_background_8e42f63de1.jpg",
-          "id": 4,
-          "width": 2459,
-          "height": 3688,
+          "url": "/uploads/about3_38b9040d60.png",
+          "id": 11,
+          "width": 488,
+          "height": 280,
           "formats": {
             "thumbnail": {
-              "name": "thumbnail_hero-background.jpg",
-              "hash": "thumbnail_hero_background_8e42f63de1",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
+              "name": "thumbnail_about3.png",
+              "hash": "thumbnail_about3_38b9040d60",
+              "ext": ".png",
+              "mime": "image/png",
               "path": null,
-              "width": 104,
-              "height": 156,
-              "size": 3.78,
-              "sizeInBytes": 3779,
-              "url": "/uploads/thumbnail_hero_background_8e42f63de1.jpg"
-            },
-            "small": {
-              "name": "small_hero-background.jpg",
-              "hash": "small_hero_background_8e42f63de1",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
-              "path": null,
-              "width": 333,
-              "height": 500,
-              "size": 26.78,
-              "sizeInBytes": 26779,
-              "url": "/uploads/small_hero_background_8e42f63de1.jpg"
-            },
-            "medium": {
-              "name": "medium_hero-background.jpg",
-              "hash": "medium_hero_background_8e42f63de1",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
-              "path": null,
-              "width": 500,
-              "height": 750,
-              "size": 55.08,
-              "sizeInBytes": 55082,
-              "url": "/uploads/medium_hero_background_8e42f63de1.jpg"
-            },
-            "large": {
-              "name": "large_hero-background.jpg",
-              "hash": "large_hero_background_8e42f63de1",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
-              "path": null,
-              "width": 666,
-              "height": 1000,
-              "size": 91.56,
-              "sizeInBytes": 91564,
-              "url": "/uploads/large_hero_background_8e42f63de1.jpg"
+              "width": 245,
+              "height": 141,
+              "size": 81.53,
+              "sizeInBytes": 81525,
+              "url": "/uploads/thumbnail_about3_38b9040d60.png"
             }
           }
         }
@@ -147,12 +168,33 @@
       },
       {
         "__component": "why-choose.why-choose",
-        "firstTitle": "Why Choose Us?",
-        "firstDesc": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
-        "secondTitle": "Our Services",
-        "secondDesc": "We offer a wide range of chiropractic services to help you achieve your health goals.",
-        "ThirdTitle": "Our Team",
-        "ThirdDesc": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients."
+        "firstTitle": "Male & Female Chiropractors",
+        "firstDesc": "Offering both male and female chiropractors allows you to select a healthcare professional you're most comfortable with.",
+        "secondTitle": "On-site Massage Therapist",
+        "secondDesc": "Our skilled therapist creates a tailored experience, addressing specific concerns and promoting relaxation.",
+        "ThirdTitle": "We can reduce pain in just one visit",
+        "ThirdDesc": "At Complete Chiropractic, we target pain and injuries at their source. We take a holistic approach to help you achieve better health.",
+        "firstIcon": {
+          "url": "/uploads/image1_4c9eb35f76.png",
+          "id": 12,
+          "width": 71,
+          "height": 71,
+          "formats": null
+        },
+        "secondIcon": {
+          "url": "/uploads/image2_cad5d40fa5.png",
+          "id": 13,
+          "width": 68,
+          "height": 68,
+          "formats": null
+        },
+        "ThirdIcon": {
+          "url": "/uploads/image3_5cb42a5125.png",
+          "id": 14,
+          "width": 81,
+          "height": 80,
+          "formats": null
+        }
       },
       {
         "__component": "let-us-help-you.let-us-help-you",

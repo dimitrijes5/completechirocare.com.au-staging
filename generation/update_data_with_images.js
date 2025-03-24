@@ -45,8 +45,9 @@ function debugObject(obj, prefix = '') {
         key.toLowerCase().includes('image') || 
         key.toLowerCase().includes('background') || 
         key.toLowerCase().includes('avatar') || 
-        key.toLowerCase().includes('photo')) {
-      console.log(`Found potential image field: ${fullPath}`, 
+        key.toLowerCase().includes('photo') ||
+        key.toLowerCase().includes('icon')) {
+      console.log(`Found potential image/icon field: ${fullPath}`, 
                   value === null ? 'null' : 
                   (typeof value === 'object' ? JSON.stringify(value).substring(0, 100) : value));
     }
@@ -73,73 +74,39 @@ function updateDataWithImages(data, uploadedImages) {
   let updateCount = 0;
   
   // Helper function to recursively process objects
-  function processObject(obj) {
+  function processObject(obj, parent = null) {
     if (!obj || typeof obj !== 'object') return;
+    
+    // Store reference to parent for component context
+    if (parent) {
+      obj.parent = parent;
+    }
     
     // Handle arrays
     if (Array.isArray(obj)) {
-      obj.forEach(item => processObject(item));
+      obj.forEach(item => processObject(item, obj));
       return;
     }
     
     // Handle objects
     for (const key in obj) {
-      // Skip if not own property
-      if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+      // Skip if not own property or parent reference
+      if (!Object.prototype.hasOwnProperty.call(obj, key) || key === 'parent') continue;
       
       const value = obj[key];
       
-      // Process nested objects/arrays
-      if (value && typeof value === 'object') {
-        processObject(value);
-        continue;
-      }
-      
-      // Check if the key suggests it's an image and current value is a string or null
-      if ((key.toLowerCase().includes('img') || 
+      // Check if the key suggests it's an image or icon
+      if (key.toLowerCase().includes('img') || 
           key.toLowerCase().includes('image') || 
           key.toLowerCase().includes('background') || 
           key.toLowerCase().includes('avatar') || 
-          key.toLowerCase().includes('photo')) && 
-          (typeof value === 'string' || value === null)) {
+          key.toLowerCase().includes('photo') ||
+          key.toLowerCase().includes('icon')) {
         
-        // Handle existing url object
-        if (typeof obj[key] === 'object' && obj[key] !== null && obj[key].url) {
-          const urlValue = obj[key].url;
-          if (typeof urlValue === 'string' && urlValue.startsWith('/')) {
-            // This looks like a relative path, try to find a match
-            const pathWithoutLeadingSlash = urlValue.substring(1);
-            const matchingImage = findMatchingImage(pathWithoutLeadingSlash, uploadedImages);
-            
-            if (matchingImage) {
-              obj[key].url = matchingImage.url;
-              console.log(`Updated ${key}.url from ${urlValue} to ${matchingImage.url}`);
-              updateCount++;
-            }
-          }
-        } 
-        // Handle string path
-        else if (typeof value === 'string' && value.length > 0) {
-          // Look for a matching uploaded image
-          const matchingImage = findMatchingImage(value, uploadedImages);
-          
-          if (matchingImage) {
-            // Replace with an object containing URL and other image data
-            obj[key] = {
-              url: matchingImage.url,
-              id: matchingImage.id,
-              width: matchingImage.width,
-              height: matchingImage.height,
-              formats: matchingImage.formats
-            };
-            console.log(`Updated ${key} string value to use uploaded image URL: ${matchingImage.url}`);
-            updateCount++;
-          }
-        } 
-        // Handle null value
-        else if (value === null) {
-          // Try to find an image with a name that matches the key
-          const keyBasedImage = findImageByKeyName(key, uploadedImages);
+        // If it's an object with a URL, replace it with a component-specific image
+        if (value && typeof value === 'object' && value.url) {
+          // Try to find an appropriate image based on the component
+          const keyBasedImage = findImageByKeyName(key, uploadedImages, obj);
           
           if (keyBasedImage) {
             obj[key] = {
@@ -149,12 +116,52 @@ function updateDataWithImages(data, uploadedImages) {
               height: keyBasedImage.height,
               formats: keyBasedImage.formats
             };
-            console.log(`Updated null ${key} with matching image: ${keyBasedImage.url}`);
+            console.log(`Updated existing ${key} with component-specific image: ${keyBasedImage.url}`);
+            updateCount++;
+          }
+        }
+        // If it's a string value, replace it too
+        else if (typeof value === 'string' && value.length > 0) {
+          const keyBasedImage = findImageByKeyName(key, uploadedImages, obj);
+          
+          if (keyBasedImage) {
+            obj[key] = {
+              url: keyBasedImage.url,
+              id: keyBasedImage.id,
+              width: keyBasedImage.width,
+              height: keyBasedImage.height,
+              formats: keyBasedImage.formats
+            };
+            console.log(`Updated ${key} string value with component-specific image: ${keyBasedImage.url}`);
+            updateCount++;
+          }
+        }
+        // If it's null, try to find a matching image
+        else if (value === null) {
+          const keyBasedImage = findImageByKeyName(key, uploadedImages, obj);
+          
+          if (keyBasedImage) {
+            obj[key] = {
+              url: keyBasedImage.url,
+              id: keyBasedImage.id,
+              width: keyBasedImage.width,
+              height: keyBasedImage.height,
+              formats: keyBasedImage.formats
+            };
+            console.log(`Updated null ${key} with component-specific image: ${keyBasedImage.url}`);
             updateCount++;
           }
         }
       }
+      
+      // Process nested objects/arrays
+      if (value && typeof value === 'object') {
+        processObject(value, obj);
+      }
     }
+    
+    // Clean up parent reference to avoid circular references when stringifying
+    delete obj.parent;
   }
   
   // Find an image that matches a string path or name
@@ -215,38 +222,163 @@ function updateDataWithImages(data, uploadedImages) {
     return null;
   }
   
-  // Find an image based on the key name
-  function findImageByKeyName(key, uploadedImages) {
+  // Find an image based on the key name and component context
+  function findImageByKeyName(key, uploadedImages, obj = null) {
     const keyLower = key.toLowerCase();
     console.log(`Looking for image based on key name: ${keyLower}`);
+    
+    // Try to determine the component type from the object or parent hierarchy
+    let componentType = null;
+    
+    // Check if we can determine the component type from the object
+    if (obj && typeof obj === 'object') {
+      // Look for __component field which indicates the component type
+      if (obj.__component) {
+        componentType = obj.__component.split('.')[0]; // Get the first part of component name
+        console.log(`Found component type from object: ${componentType}`);
+      }
+      
+      // If we have a parent, check if it's a known component
+      if (!componentType && obj.parent && obj.parent.__component) {
+        componentType = obj.parent.__component.split('.')[0];
+        console.log(`Found component type from parent: ${componentType}`);
+      }
+    }
+    
+    // Use the component type to determine the folder
+    let primaryFolder = null;
+    if (componentType) {
+      // Map component types to folder names
+      const componentToFolder = {
+        'hero-component': 'hero',
+        'about': 'about',
+        'services': 'services',
+        'team': 'team',
+        'teams-part': 'team',
+        'slider-animation': 'slider',
+        'featured-section': 'featured',
+        'goals': 'goals',
+        'why-choose': 'why-choose-us',
+        'consultation': 'consultation',
+        'let-us-help-you': 'help',
+        'map': 'map',
+        'last-section': 'last-section'
+      };
+      
+      primaryFolder = componentToFolder[componentType];
+      if (primaryFolder) {
+        console.log(`Mapped component ${componentType} to folder ${primaryFolder}`);
+      }
+    }
+    
+    // Extract number from key if it exists - try different patterns
+    // First, check for patterns like "firstIcon", "secondIcon", "ThirdIcon"
+    let number = null;
+    let orderKeywords = {
+      'first': 1,
+      'second': 2,
+      'third': 3,
+      'fourth': 4,
+      'fifth': 5,
+      'sixth': 6,
+      'seventh': 7,
+      'eighth': 8,
+      'ninth': 9,
+      'tenth': 10
+    };
+    
+    // Check for order words in the key
+    for (const [word, num] of Object.entries(orderKeywords)) {
+      if (keyLower.includes(word)) {
+        number = num;
+        console.log(`Found ordered number ${number} from key part: ${word}`);
+        break;
+      }
+    }
+    
+    // If no order word was found, try numeric extraction
+    if (number === null) {
+      const matches = keyLower.match(/\d+$/);
+      if (matches) {
+        number = parseInt(matches[0]);
+        console.log(`Found numeric value ${number} in key`);
+      }
+    }
+    
+    // Special case for icons - check if the key contains "icon"
+    const isIcon = keyLower.includes('icon');
     
     // Extract base name (e.g., "img" from "img1")
     const baseName = keyLower.replace(/\d+$/, '');
     
-    // Guess potential folder names based on the key
+    // Guess potential folder names based on various factors
     const folderGuesses = [];
     
-    // Add some common sections based on your folder structure
+    // First priority: use the component-derived folder if available
+    if (primaryFolder) {
+      folderGuesses.push(primaryFolder);
+    }
+    
+    // For icons, check icon-specific folders first
+    if (isIcon) {
+      folderGuesses.push('why-choose-us', 'icons', 'icon');
+    }
+    
+    // Second priority: use key-based guesses
     if (keyLower.includes('hero') || keyLower.includes('background')) folderGuesses.push('hero');
     if (keyLower.includes('about')) folderGuesses.push('about');
     if (keyLower.includes('service')) folderGuesses.push('services');
     if (keyLower.includes('team') || keyLower.includes('member')) folderGuesses.push('team');
+    if (keyLower.includes('slider')) folderGuesses.push('slider');
+    if (keyLower.includes('feature')) folderGuesses.push('featured');
+    if (keyLower.includes('goal')) folderGuesses.push('goals');
+    if (keyLower.includes('why')) folderGuesses.push('why-choose-us');
+    if (keyLower.includes('consult')) folderGuesses.push('consultation');
+    if (keyLower.includes('help')) folderGuesses.push('help');
+    if (keyLower.includes('map')) folderGuesses.push('map');
+    if (keyLower.includes('last')) folderGuesses.push('last-section');
     
-    // If we couldn't guess from key, use generic guesses
+    // Third priority: generic fallback folders
     if (folderGuesses.length === 0) {
       folderGuesses.push('hero', 'about', 'services', 'team');
     }
     
-    console.log(`Guessing folders: ${folderGuesses.join(', ')}`);
+    // Remove duplicates
+    const uniqueFolders = [...new Set(folderGuesses)];
+    console.log(`Guessing folders: ${uniqueFolders.join(', ')}`);
     
-    // Try to find an image in the guessed folders
-    for (const folder of folderGuesses) {
-      // Extract number from key if it exists
-      const matches = keyLower.match(/\d+$/);
-      const number = matches ? parseInt(matches[0]) : null;
-      
-      // First try exact number match if we have a number
-      if (number !== null) {
+    // For icons, check for specific icon images like "image1", "icon1", etc.
+    if (isIcon && number !== null) {
+      // Try direct match for the number
+      for (const folder of uniqueFolders) {
+        for (const path in uploadedImages) {
+          if (path.startsWith(`${folder}/`)) {
+            // Check for pattern like "image1.png" or "icon1.svg"
+            if (path.includes(`image${number}`) || path.includes(`icon${number}`)) {
+              console.log(`Found numbered icon match in ${folder}: ${path}`);
+              return uploadedImages[path];
+            }
+          }
+        }
+      }
+    }
+    
+    // Try to find an image with matching number in primary folder first
+    if (primaryFolder && number !== null) {
+      for (const path in uploadedImages) {
+        if (path.startsWith(`${primaryFolder}/`)) {
+          const imageNumber = path.match(/\d+/);
+          if (imageNumber && parseInt(imageNumber[0]) === number) {
+            console.log(`Found numbered match in primary folder ${primaryFolder}: ${path}`);
+            return uploadedImages[path];
+          }
+        }
+      }
+    }
+    
+    // Try to find images in the guessed folders with matching number
+    if (number !== null) {
+      for (const folder of uniqueFolders) {
         for (const path in uploadedImages) {
           if (path.startsWith(`${folder}/`)) {
             const imageNumber = path.match(/\d+/);
@@ -257,8 +389,20 @@ function updateDataWithImages(data, uploadedImages) {
           }
         }
       }
-      
-      // If no match with number, find any image in the folder
+    }
+    
+    // If no match with number, try to find any image in primary folder
+    if (primaryFolder) {
+      for (const path in uploadedImages) {
+        if (path.startsWith(`${primaryFolder}/`)) {
+          console.log(`Found image in primary folder ${primaryFolder}: ${path}`);
+          return uploadedImages[path];
+        }
+      }
+    }
+    
+    // If still no match, try any image in guessed folders
+    for (const folder of uniqueFolders) {
       for (const path in uploadedImages) {
         if (path.startsWith(`${folder}/`)) {
           console.log(`Found image in ${folder}: ${path}`);

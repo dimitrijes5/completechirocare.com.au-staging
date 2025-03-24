@@ -23,6 +23,8 @@ const response = await fetch(`${baseUrl}/api/pages?populate[landing][populate]=*
   }
 });
 
+
+
 const { data } = await response.json();
 const heroData = data[0].landing.find((component: { __component: string }) => component.__component === "hero-component.hero-component");
 const aboutData = data[0].landing.find((component: { __component: string }) => component.__component === "about.about");
@@ -41,6 +43,7 @@ const seoData = {
   SeoDesc: "Professional chiropractic care services offering personalized treatment plans for optimal health."
 };
 
+
 ---
 
 <Layout title={seoData?.SeoTitle} description={seoData?.SeoDesc}>
@@ -48,12 +51,12 @@ const seoData = {
   <About aboutData={aboutData} />
   <Slider client:load treatments={sliderData.treatments} />
   <ChooseUs whyChooseData={whyChooseData} />
-  <HelpYou helpData={letUsHelpYouData} />
-  <Featured featuredData={featuredSectionData} />
-  <Consultation consultationData={consultationData} />
-  <ReactServices client:load servicesData={servicesData}/>
-  <Goals goalsData={goalsData} />
-  <OurTeam teamsData={teamsData} />
-  <Map mapData={mapData} />
-  <CallUs lastSectionData={lastSectionData} />
+  <!-- <HelpYou helpData={letUsHelpYouData} /> -->
+  <!-- <Featured featuredData={featuredSectionData} /> -->
+  <!-- <Consultation consultationData={consultationData} /> -->
+  <!-- <ReactServices client:load servicesData={servicesData}/> -->
+  <!-- <Goals goalsData={goalsData} /> -->
+  <!-- <OurTeam teamsData={teamsData} /> -->
+  <!-- <Map mapData={mapData} /> -->
+  <!-- <CallUs lastSectionData={lastSectionData} /> -->
 </Layout>

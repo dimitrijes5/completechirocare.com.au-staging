@@ -3,37 +3,198 @@
     "landing": [
       {
         "__component": "hero-component.hero-component",
-        "Title": "Welcome to Complete Chiro Care",
-        "desc": "Your Path to Wellness Begins Here",
-        "Welcoming": "Welcome to Complete Chiro Care",
-        "CTA1": "Book Now",
-        "CTA2": "Learn More About Us",
-        "HowItWorks": "How It Works",
+        "Title": "COMPLETE CHIROPRACTIC",
+        "desc": "Your valued Chiropractors on the Northern Beaches",
+        "Welcoming": "Welcome To Complete Chiropractic, Dee Why ",
+        "CTA1": "Book Appointment",
+        "CTA2": "Call Us Now",
+        "HowItWorks": "See How It Works",
         "background": {
-          "url": "hero_background_16f861688b.jpg"
+          "url": "/uploads/about1_533937e8d9.png",
+          "id": 9,
+          "width": 1105,
+          "height": 473,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_about1.png",
+              "hash": "thumbnail_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 245,
+              "height": 105,
+              "size": 56.44,
+              "sizeInBytes": 56440,
+              "url": "/uploads/thumbnail_about1_533937e8d9.png"
+            },
+            "small": {
+              "name": "small_about1.png",
+              "hash": "small_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 500,
+              "height": 214,
+              "size": 203.67,
+              "sizeInBytes": 203669,
+              "url": "/uploads/small_about1_533937e8d9.png"
+            },
+            "medium": {
+              "name": "medium_about1.png",
+              "hash": "medium_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 750,
+              "height": 321,
+              "size": 431.61,
+              "sizeInBytes": 431606,
+              "url": "/uploads/medium_about1_533937e8d9.png"
+            },
+            "large": {
+              "name": "large_about1.png",
+              "hash": "large_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 1000,
+              "height": 428,
+              "size": 724.58,
+              "sizeInBytes": 724579,
+              "url": "/uploads/large_about1_533937e8d9.png"
+            }
+          }
         }
       },
       {
         "__component": "about.about",
         "Title": "About Us",
-        "FirstSentence": "Our commitment to providing exceptional chiropractic care spans years of dedicated service.",
-        "SecondSentence": "We combine traditional techniques with modern approaches to ensure optimal results for our patients.",
-        "CTA": "Learn More About Us",
-        "img1": null,
-        "img2": null,
-        "img3": null
+        "FirstSentence": "The Northern Beaches' Most Trusted Chiropractors",
+        "SecondSentence": "As the leading chiropractic clinic in Sydney's Northern Beaches, our chiropractors have an extensive range of experience across multiple treatment modalities. Ours is one of the few Australian clinics to offer Advanced Biostructural Correction (ABC). This treatment method is known to gradually unwind previous injuries and traumas and can help you optimise your health. At Complete Chiropractic, we target pain and injuries at their source. We take a holistic approach to help you achieve better health. Alongside our breakthrough range of chiropractic treatments, we'll address your lifestyle habits, posture, and diet to enhance your wellness and bring you closer to reducing chronic pain.",
+        "CTA": "Read More",
+        "img1": {
+          "url": "/uploads/about1_533937e8d9.png",
+          "id": 9,
+          "width": 1105,
+          "height": 473,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_about1.png",
+              "hash": "thumbnail_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 245,
+              "height": 105,
+              "size": 56.44,
+              "sizeInBytes": 56440,
+              "url": "/uploads/thumbnail_about1_533937e8d9.png"
+            },
+            "small": {
+              "name": "small_about1.png",
+              "hash": "small_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 500,
+              "height": 214,
+              "size": 203.67,
+              "sizeInBytes": 203669,
+              "url": "/uploads/small_about1_533937e8d9.png"
+            },
+            "medium": {
+              "name": "medium_about1.png",
+              "hash": "medium_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 750,
+              "height": 321,
+              "size": 431.61,
+              "sizeInBytes": 431606,
+              "url": "/uploads/medium_about1_533937e8d9.png"
+            },
+            "large": {
+              "name": "large_about1.png",
+              "hash": "large_about1_533937e8d9",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 1000,
+              "height": 428,
+              "size": 724.58,
+              "sizeInBytes": 724579,
+              "url": "/uploads/large_about1_533937e8d9.png"
+            }
+          }
+        },
+        "img2": {
+          "url": "/uploads/about2_2001329401.png",
+          "id": 10,
+          "width": 157,
+          "height": 156,
+          "formats": null
+        },
+        "img3": {
+          "url": "/uploads/about3_38b9040d60.png",
+          "id": 11,
+          "width": 488,
+          "height": 280,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_about3.png",
+              "hash": "thumbnail_about3_38b9040d60",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 245,
+              "height": 141,
+              "size": 81.53,
+              "sizeInBytes": 81525,
+              "url": "/uploads/thumbnail_about3_38b9040d60.png"
+            }
+          }
+        }
       },
       {
-        "__component": "slider-animation.slider-animation"
+        "__component": "slider-animation.slider-animation",
+        "treatments": [
+          "Family Friendly Chiropractors",
+          "Established for 15 years",
+          "Holistic Approach to Health",
+          "Advanced Biostructural Correction (ABC)",
+          "Personalised Treatment Plans"
+        ]
       },
       {
         "__component": "why-choose.why-choose",
-        "firstTitle": "Why Choose Us?",
-        "firstDesc": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
-        "secondTitle": "Our Services",
-        "secondDesc": "We offer a wide range of chiropractic services to help you achieve your health goals.",
-        "ThirdTitle": "Our Team",
-        "ThirdDesc": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients."
+        "firstTitle": "Male & Female Chiropractors",
+        "firstDesc": "Offering both male and female chiropractors allows you to select a healthcare professional you're most comfortable with.",
+        "secondTitle": "On-site Massage Therapist",
+        "secondDesc": "Our skilled therapist creates a tailored experience, addressing specific concerns and promoting relaxation.",
+        "ThirdTitle": "We can reduce pain in just one visit",
+        "ThirdDesc": "At Complete Chiropractic, we target pain and injuries at their source. We take a holistic approach to help you achieve better health.",
+        "firstIcon": {
+          "url": "/uploads/image1_4c9eb35f76.png",
+          "id": 12,
+          "width": 71,
+          "height": 71,
+          "formats": null
+        },
+        "secondIcon": {
+          "url": "/uploads/image1_4c9eb35f76.png",
+          "id": 12,
+          "width": 71,
+          "height": 71,
+          "formats": null
+        },
+        "ThirdIcon": {
+          "url": "/uploads/image1_4c9eb35f76.png",
+          "id": 12,
+          "width": 71,
+          "height": 71,
+          "formats": null
+        }
       },
       {
         "__component": "let-us-help-you.let-us-help-you",
