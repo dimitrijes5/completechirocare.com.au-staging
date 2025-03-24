@@ -1,5 +1,5 @@
-{
-    "landing": [
+[{
+      "landing": [
     {
       "__component": "hero-component.hero-component",
       "Title": "Welcome to Complete Chiro Care",
@@ -19,6 +19,30 @@
         "img1": null,
         "img2": null,
         "img3": null
-      }
+    },
+    {
+      "__component": "slider-animation.slider-animation"
+    },
+    {
+      "__component":"why-choose.why-choose",
+      "firstTitle":"Why Choose Us?",
+      "firstDesc":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "secondTitle":"Our Services",
+      "secondDesc":"We offer a wide range of chiropractic services to help you achieve your health goals.",
+      "ThirdTitle":"Our Team",
+      "ThirdDesc":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients."
+    },
+    {
+      "__component":"let-us-help-you.let-us-help-you",
+      "Title":"Let Us Help You",
+      "Sentance1":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "Sentance2":"We offer a wide range of chiropractic services to help you achieve your health goals.",
+      "PhoneNumber":"123-456-7890"
+    },
+    {
+      "__component":"featureSection.featureSection",
+      "Title":"Our Features"
+    }
     ]
   }
+]
