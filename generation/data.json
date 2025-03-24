@@ -10,7 +10,7 @@
         "CTA2": "Learn More About Us",
         "HowItWorks": "How It Works",
         "background": {
-          "url": "/hero/hero-background.jpg"
+          "url": "hero_background_16f861688b.jpg"
         }
       },
       {
@@ -19,9 +19,174 @@
         "FirstSentence": "Our commitment to providing exceptional chiropractic care spans years of dedicated service.",
         "SecondSentence": "We combine traditional techniques with modern approaches to ensure optimal results for our patients.",
         "CTA": "Learn More About Us",
-        "img1": null,
-        "img2": null,
-        "img3": null
+        "img1": {
+          "url": "/uploads/hero_background_8e42f63de1.jpg",
+          "id": 4,
+          "width": 2459,
+          "height": 3688,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_hero-background.jpg",
+              "hash": "thumbnail_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 104,
+              "height": 156,
+              "size": 3.78,
+              "sizeInBytes": 3779,
+              "url": "/uploads/thumbnail_hero_background_8e42f63de1.jpg"
+            },
+            "small": {
+              "name": "small_hero-background.jpg",
+              "hash": "small_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 333,
+              "height": 500,
+              "size": 26.78,
+              "sizeInBytes": 26779,
+              "url": "/uploads/small_hero_background_8e42f63de1.jpg"
+            },
+            "medium": {
+              "name": "medium_hero-background.jpg",
+              "hash": "medium_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 500,
+              "height": 750,
+              "size": 55.08,
+              "sizeInBytes": 55082,
+              "url": "/uploads/medium_hero_background_8e42f63de1.jpg"
+            },
+            "large": {
+              "name": "large_hero-background.jpg",
+              "hash": "large_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 666,
+              "height": 1000,
+              "size": 91.56,
+              "sizeInBytes": 91564,
+              "url": "/uploads/large_hero_background_8e42f63de1.jpg"
+            }
+          }
+        },
+        "img2": {
+          "url": "/uploads/hero_background_8e42f63de1.jpg",
+          "id": 4,
+          "width": 2459,
+          "height": 3688,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_hero-background.jpg",
+              "hash": "thumbnail_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 104,
+              "height": 156,
+              "size": 3.78,
+              "sizeInBytes": 3779,
+              "url": "/uploads/thumbnail_hero_background_8e42f63de1.jpg"
+            },
+            "small": {
+              "name": "small_hero-background.jpg",
+              "hash": "small_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 333,
+              "height": 500,
+              "size": 26.78,
+              "sizeInBytes": 26779,
+              "url": "/uploads/small_hero_background_8e42f63de1.jpg"
+            },
+            "medium": {
+              "name": "medium_hero-background.jpg",
+              "hash": "medium_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 500,
+              "height": 750,
+              "size": 55.08,
+              "sizeInBytes": 55082,
+              "url": "/uploads/medium_hero_background_8e42f63de1.jpg"
+            },
+            "large": {
+              "name": "large_hero-background.jpg",
+              "hash": "large_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 666,
+              "height": 1000,
+              "size": 91.56,
+              "sizeInBytes": 91564,
+              "url": "/uploads/large_hero_background_8e42f63de1.jpg"
+            }
+          }
+        },
+        "img3": {
+          "url": "/uploads/hero_background_8e42f63de1.jpg",
+          "id": 4,
+          "width": 2459,
+          "height": 3688,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_hero-background.jpg",
+              "hash": "thumbnail_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 104,
+              "height": 156,
+              "size": 3.78,
+              "sizeInBytes": 3779,
+              "url": "/uploads/thumbnail_hero_background_8e42f63de1.jpg"
+            },
+            "small": {
+              "name": "small_hero-background.jpg",
+              "hash": "small_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 333,
+              "height": 500,
+              "size": 26.78,
+              "sizeInBytes": 26779,
+              "url": "/uploads/small_hero_background_8e42f63de1.jpg"
+            },
+            "medium": {
+              "name": "medium_hero-background.jpg",
+              "hash": "medium_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 500,
+              "height": 750,
+              "size": 55.08,
+              "sizeInBytes": 55082,
+              "url": "/uploads/medium_hero_background_8e42f63de1.jpg"
+            },
+            "large": {
+              "name": "large_hero-background.jpg",
+              "hash": "large_hero_background_8e42f63de1",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 666,
+              "height": 1000,
+              "size": 91.56,
+              "sizeInBytes": 91564,
+              "url": "/uploads/large_hero_background_8e42f63de1.jpg"
+            }
+          }
+        }
       },
       {
         "__component": "slider-animation.slider-animation"

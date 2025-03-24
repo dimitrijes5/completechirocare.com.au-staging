@@ -18,24 +18,45 @@ async function uploadImage(filePath) {
     console.log(`Uploading image: ${filePath}`);
     
     const formData = new FormData();
-    formData.append('files', fs.createReadStream(filePath));
+    const fileStream = fs.createReadStream(filePath);
+    
+    // Get filename from path
+    const fileName = path.basename(filePath);
+    
+    // Add the file to the form data with its original filename
+    formData.append('files', fileStream, {
+      filename: fileName,
+      contentType: getContentType(fileName)
+    });
+    
+    console.log(`Sending request to ${STRAPI_URL}/api/upload with file: ${fileName}`);
     
     const response = await fetch(`${STRAPI_URL}/api/upload`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${ADMIN_API_TOKEN}`,
+        // Let form-data set its own content-type with boundary
       },
       body: formData,
     });
 
+    const responseText = await response.text();
+    
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Failed to upload image: ${response.statusText}\n${JSON.stringify(errorData, null, 2)}`);
+      console.error(`Error response status: ${response.status} ${response.statusText}`);
+      console.error(`Response body: ${responseText}`);
+      throw new Error(`Failed to upload image: ${response.statusText}`);
     }
 
-    const result = await response.json();
-    console.log(`Image uploaded successfully: ${filePath}`);
-    return result[0]; // Strapi returns an array of uploaded files
+    try {
+      const result = JSON.parse(responseText);
+      console.log(`Image uploaded successfully. Response:`, JSON.stringify(result, null, 2).substring(0, 200) + '...');
+      return result[0]; // Strapi returns an array of uploaded files
+    } catch (parseError) {
+      console.error('Error parsing JSON response:', parseError);
+      console.error('Raw response:', responseText);
+      throw new Error('Failed to parse upload response');
+    }
   } catch (error) {
     console.error(`Error uploading image ${filePath}:`, error.message);
     throw error;
@@ -43,33 +64,66 @@ async function uploadImage(filePath) {
 }
 
 /**
+ * Get content type based on file extension
+ */
+function getContentType(fileName) {
+  const ext = path.extname(fileName).toLowerCase();
+  
+  const contentTypes = {
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.png': 'image/png',
+    '.gif': 'image/gif',
+    '.webp': 'image/webp',
+    '.svg': 'image/svg+xml'
+  };
+  
+  return contentTypes[ext] || 'application/octet-stream';
+}
+
+/**
  * Upload all images from a directory recursively
  */
 async function uploadImagesFromDir(dirPath, uploadedImages = {}) {
-  const files = fs.readdirSync(dirPath);
+  console.log(`Scanning directory: ${dirPath}`);
   
-  for (const file of files) {
-    const fullPath = path.join(dirPath, file);
-    const stat = fs.statSync(fullPath);
+  try {
+    const files = fs.readdirSync(dirPath);
     
-    if (stat.isDirectory()) {
-      // Recursively process subdirectories
-      await uploadImagesFromDir(fullPath, uploadedImages);
-    } else {
-      // Check if file is an image based on extension
-      const ext = path.extname(file).toLowerCase();
-      if (['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'].includes(ext)) {
-        try {
-          const uploadResult = await uploadImage(fullPath);
-          
-          // Store the result with a key based on the relative path from the images directory
-          const relativePath = path.relative(path.join(__dirname, 'images'), fullPath);
-          uploadedImages[relativePath] = uploadResult;
-        } catch (error) {
-          console.error(`Failed to upload ${fullPath}:`, error.message);
+    for (const file of files) {
+      const fullPath = path.join(dirPath, file);
+      const stat = fs.statSync(fullPath);
+      
+      if (stat.isDirectory()) {
+        // Recursively process subdirectories
+        await uploadImagesFromDir(fullPath, uploadedImages);
+      } else {
+        // Check if file is an image based on extension
+        const ext = path.extname(file).toLowerCase();
+        if (['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'].includes(ext)) {
+          try {
+            const uploadResult = await uploadImage(fullPath);
+            
+            // Store the result with a key based on the relative path from the images directory
+            const relativePath = path.relative(path.join(__dirname, 'images'), fullPath);
+            uploadedImages[relativePath] = uploadResult;
+            
+            // Add a simpler key with just the filename for easier lookup
+            uploadedImages[file] = uploadResult;
+            
+            // Also add folder/filename format
+            const parentFolder = path.basename(path.dirname(fullPath));
+            uploadedImages[`${parentFolder}/${file}`] = uploadResult;
+            
+            console.log(`Stored image with keys: ${relativePath}, ${file}, ${parentFolder}/${file}`);
+          } catch (error) {
+            console.error(`Failed to upload ${fullPath}:`, error.message);
+          }
         }
       }
     }
+  } catch (error) {
+    console.error(`Error reading directory ${dirPath}:`, error.message);
   }
   
   return uploadedImages;
@@ -82,12 +136,23 @@ async function main() {
   const imagesDir = path.join(__dirname, 'images');
   console.log(`Uploading all images from ${imagesDir}`);
   
+  if (!fs.existsSync(imagesDir)) {
+    console.error(`Error: Images directory ${imagesDir} does not exist. Please create it and add your images.`);
+    process.exit(1);
+  }
+  
   try {
     // Create an object to store uploaded image data
     const uploadedImages = {};
     
     // Recursively upload all images
     await uploadImagesFromDir(imagesDir, uploadedImages);
+    
+    if (Object.keys(uploadedImages).length === 0) {
+      console.warn('No images were uploaded. Check that your images directory contains image files.');
+    } else {
+      console.log(`Successfully uploaded ${Object.keys(uploadedImages).length / 3} images.`);
+    }
     
     // Save the results to a file
     const outputFile = path.join(__dirname, 'uploaded_images.json');
@@ -96,6 +161,7 @@ async function main() {
     console.log(`All images uploaded successfully! Results saved to ${outputFile}`);
   } catch (error) {
     console.error('Failed to upload images:', error.message);
+    process.exit(1);
   }
 }
 
