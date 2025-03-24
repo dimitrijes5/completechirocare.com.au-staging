@@ -1,7 +1,10 @@
 const fs = require("fs");
+// Load environment variables from .env file
+require("dotenv").config();
 
-const ADMIN_API_TOKEN = "4572351f60f82cf89a1879b9b60cc925fe8d543affd5cbab68db1f7df4a423e8e3c2bdc5ad4f5c29167abc132bbf889e2fe027575483eb527a07959e176fc4afb43e915f4ce7806cc2e18956fad7ed1b52e7a2cc41f4a304579fdf604ba5119e26543037b99b58e01721b2d9bd2f26f8695588307db3d8790afa2cf9b927f69a";
-const STRAPI_URL = "http://localhost:1337";
+// Use environment variables instead of hardcoded values
+const ADMIN_API_TOKEN = process.env.TOKEN;
+const STRAPI_URL = process.env.URL;
 
 /**
  * Create a single page in Strapi
