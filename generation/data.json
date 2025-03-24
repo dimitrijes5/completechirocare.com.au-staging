@@ -40,8 +40,62 @@
       "PhoneNumber":"123-456-7890"
     },
     {
-      "__component":"featureSection.featureSection",
+      "__component":"featured-section.featured-section",
       "Title":"Our Features"
+    },
+    {
+      "__component":"services.services"
+    },
+    {
+      "__component":"goals.goals",
+      "firstTitle":"Our Goal",
+      "mainTitle":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "title1":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "desc1":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "title2":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "desc2":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "title3":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "desc3":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients."
+    },
+    {
+      "__component":"map.map",
+      "HoursTitle":"Hours"
+    },
+    {
+      "__component":"last-section.last-section",
+      "title":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "desc":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "number":"123-456-7890",
+      "CTA":"Book Now"
+    },
+    {
+      "__component":"consultation.consultation",
+      "firstTitle":"Book Your Appointment",
+      "MainTitle":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "FirstSentance":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "SecondSentance":"We offer a wide range of chiropractic services to help you achieve your health goals.",
+      "CTA1":"Book Now",
+      "CTA2":"Learn More About Us"
+    },
+    {
+      "__component":"teams-part.teams-part",
+      "FirstTitle":"Our Team",
+      "MainTitle":"We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
+      "memberOneName":"John Doe",
+      "memberOneJob":"Chiropractor",
+      "memberTwoName":"Jane Doe",
+      "memberTwoJob":"Chiropractor",
+      "memberThreeName":"John Doe",
+      "memberThreeJob":"Chiropractor",
+      "memberFourName":"Jane Doe",
+      "memberFourJob":"Chiropractor",
+      "memberFiveName":"John Doe",
+      "memberFiveJob":"Chiropractor",
+      "memberSixName":"Jane Doe",
+      "memberSixJob":"Chiropractor",
+      "memberSevenName":"John Doe",
+      "memberSevenJob":"Chiropractor",
+      "cta":"Book Now"
     }
     ]
   }
