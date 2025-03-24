@@ -11,4 +11,11 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   output: "server",
   adapter: netlify(),
+  vite: {
+    envPrefix: [
+      'ASTRO_',
+      'PUBLIC_',
+      'STRAPI_'
+    ]
+  },
 });
