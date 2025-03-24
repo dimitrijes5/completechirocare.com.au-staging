@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "upload-images": "node upload_images.js",
     "update-data": "node update_data_with_images.js",
-    "insert-data": "node insert_data.js"
+    "insert-data": "node insert_data.js",
+    "do-all": "node upload_images.js && node update_data_with_images.js && node insert_data.js"
   },
   "keywords": [],
   "author": "",
