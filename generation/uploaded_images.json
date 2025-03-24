@@ -1,0 +1,72 @@
+{
+  "hero/hero-background.jpg": {
+    "id": 2,
+    "documentId": "fgsd1udp2q8nryjt9jrfw2jg",
+    "name": "hero-background.jpg",
+    "alternativeText": null,
+    "caption": null,
+    "width": 2459,
+    "height": 3688,
+    "formats": {
+      "thumbnail": {
+        "name": "thumbnail_hero-background.jpg",
+        "hash": "thumbnail_hero_background_b3b9002eef",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "path": null,
+        "width": 104,
+        "height": 156,
+        "size": 3.78,
+        "sizeInBytes": 3779,
+        "url": "/uploads/thumbnail_hero_background_b3b9002eef.jpg"
+      },
+      "medium": {
+        "name": "medium_hero-background.jpg",
+        "hash": "medium_hero_background_b3b9002eef",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "path": null,
+        "width": 500,
+        "height": 750,
+        "size": 55.08,
+        "sizeInBytes": 55082,
+        "url": "/uploads/medium_hero_background_b3b9002eef.jpg"
+      },
+      "large": {
+        "name": "large_hero-background.jpg",
+        "hash": "large_hero_background_b3b9002eef",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "path": null,
+        "width": 666,
+        "height": 1000,
+        "size": 91.56,
+        "sizeInBytes": 91564,
+        "url": "/uploads/large_hero_background_b3b9002eef.jpg"
+      },
+      "small": {
+        "name": "small_hero-background.jpg",
+        "hash": "small_hero_background_b3b9002eef",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "path": null,
+        "width": 333,
+        "height": 500,
+        "size": 26.78,
+        "sizeInBytes": 26779,
+        "url": "/uploads/small_hero_background_b3b9002eef.jpg"
+      }
+    },
+    "hash": "hero_background_b3b9002eef",
+    "ext": ".jpg",
+    "mime": "image/jpeg",
+    "size": 1084.73,
+    "url": "/uploads/hero_background_b3b9002eef.jpg",
+    "previewUrl": null,
+    "provider": "local",
+    "provider_metadata": null,
+    "createdAt": "2025-03-24T14:34:44.314Z",
+    "updatedAt": "2025-03-24T14:34:44.314Z",
+    "publishedAt": "2025-03-24T14:34:44.315Z"
+  }
+}
