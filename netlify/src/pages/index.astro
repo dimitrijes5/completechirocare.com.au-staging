@@ -14,8 +14,8 @@ import OurTeam from '../components/OurTeam.astro';
 import CallUs from '../components/CallUs.astro';
 import Map from '../components/Map.astro';
 
-const baseUrl = import.meta.env.STRAPI_URL_TWO;
-const token = import.meta.env.ASTRO_APP_API_TOKEN_TWO;
+const baseUrl = import.meta.env.STRAPI_URL;
+const token = import.meta.env.ASTRO_APP_API_TOKEN;
 
 const response = await fetch(`${baseUrl}/api/pages?populate[landing][populate]=*`, {
   headers: {
@@ -49,7 +49,7 @@ const seoData = {
 <Layout title={seoData?.SeoTitle} description={seoData?.SeoDesc}>
   <Hero heroData={heroData} />
   <About aboutData={aboutData} />
-  <Slider client:load treatments={sliderData.treatments} />
+  <Slider treatments={sliderData.treatments} />
   <ChooseUs whyChooseData={whyChooseData} />
   <HelpYou helpData={letUsHelpYouData} />
   <Featured featuredData={featuredSectionData} />

@@ -1,4 +1,7 @@
 const fs = require("fs");
+const path = require("path");
+const FormData = require("form-data");
+const axios = require("axios");
 // Load environment variables from .env file
 require("dotenv").config({ path: '../.env' });
 
@@ -34,6 +37,14 @@ function processDataForStrapi(data) {
       else if (value && typeof value === 'object' && !Array.isArray(value) && value.url && value.id) {
         processed[key] = value.id; // Just use the ID for the relationship
       } 
+      // Skip these fields as they're processed separately
+      else if (key === 'featuredImgSrc' || key === 'featuredImgInfo') {
+        // Skip these keys, they're processed separately
+      }
+      // Let through FeaturedImgUrl if present
+      else if (key === 'FeaturedImgUrl') {
+        processed[key] = value; // Keep the URL as is
+      }
       // For other objects or arrays, recursively process them
       else if (value && typeof value === 'object') {
         processed[key] = processItem(value);
@@ -48,6 +59,85 @@ function processDataForStrapi(data) {
   }
   
   return processItem(data);
+}
+
+/**
+ * Upload an image to Strapi Media Library
+ * @param {Object} imageInfo - Information about the image to upload
+ * @returns {Promise<number|null>} - ID of the uploaded media or null if upload failed
+ */
+async function uploadImageToStrapi(imageInfo) {
+  try {
+    if (!imageInfo || !imageInfo.filePath) {
+      console.log('No image to upload');
+      return null;
+    }
+    
+    // Check if the file exists
+    if (!fs.existsSync(imageInfo.filePath)) {
+      console.error(`Image file not found: ${imageInfo.filePath}`);
+      return null;
+    }
+    
+    console.log(`Uploading image: ${imageInfo.fileName}`);
+    
+    // Read file as buffer instead of stream
+    const fileBuffer = fs.readFileSync(imageInfo.filePath);
+    const fileSize = fileBuffer.length;
+    
+    console.log(`File size: ${fileSize} bytes`);
+    
+    // Create a simple form data object
+    const formData = new FormData();
+    formData.append('files', fileBuffer, {
+      filename: imageInfo.fileName,
+      contentType: imageInfo.mimeType,
+    });
+    
+    // Get upload URL
+    const uploadUrl = `${STRAPI_URL}/api/upload`;
+    console.log(`Uploading to: ${uploadUrl}`);
+    
+    try {
+      // Use axios for consistent handling
+      const response = await axios.post(uploadUrl, formData, {
+        headers: {
+          'Authorization': `Bearer ${ADMIN_API_TOKEN}`,
+          ...formData.getHeaders()
+        }
+      });
+      
+      console.log('Upload response status:', response.status);
+      
+      if (response.status >= 200 && response.status < 300) {
+        const uploadResult = response.data;
+        if (Array.isArray(uploadResult) && uploadResult.length > 0) {
+          console.log(`Image uploaded successfully with ID: ${uploadResult[0].id}`);
+          return uploadResult[0].id;
+        } else {
+          console.error('Unexpected response format from upload API:', uploadResult);
+          return null;
+        }
+      } else {
+        console.error(`Failed to upload image: ${response.status}`);
+        console.error(`Error details:`, response.data);
+        return null;
+      }
+    } catch (uploadError) {
+      console.error('Error during upload request:', uploadError.message);
+      
+      // Fallback to direct URL approach if needed
+      if (imageInfo.featuredImgSrc) {
+        console.log('Falling back to using direct URL reference:', imageInfo.featuredImgSrc);
+        return imageInfo.featuredImgSrc;
+      }
+      
+      return null;
+    }
+  } catch (error) {
+    console.error('Error preparing image upload:', error.message);
+    return null;
+  }
 }
 
 /**
@@ -97,7 +187,31 @@ async function checkBlogPostExists(slug) {
  * Create a new blog post in Strapi
  */
 async function createBlogPost(postData) {
+  // Process the data first
   const processedData = processDataForStrapi(postData);
+  
+  // Handle the featured image
+  if (postData.featuredImgInfo) {
+    // Try to upload the image
+    const featuredImageId = await uploadImageToStrapi(postData.featuredImgInfo);
+    
+    if (featuredImageId) {
+      // If it's a number, it's an ID from the media library
+      if (typeof featuredImageId === 'number') {
+        processedData.FeaturedImg = featuredImageId;
+      } 
+      // If it's a string, it might be a URL to directly use
+      else if (typeof featuredImageId === 'string') {
+        processedData.FeaturedImgUrl = featuredImageId;
+      }
+    } else if (postData.featuredImgSrc) {
+      // If upload fails but we have the original URL, use that
+      processedData.FeaturedImgUrl = postData.featuredImgSrc;
+    }
+  } else if (postData.featuredImgSrc) {
+    // If no local image but we have the URL, use that
+    processedData.FeaturedImgUrl = postData.featuredImgSrc;
+  }
   
   try {
     console.log(`Creating new blog post with slug "${postData.Slug}"...`);
@@ -151,7 +265,31 @@ async function createBlogPost(postData) {
  * Update an existing blog post in Strapi
  */
 async function updateBlogPost(id, postData) {
+  // Process the data first
   const processedData = processDataForStrapi(postData);
+  
+  // Handle the featured image
+  if (postData.featuredImgInfo) {
+    // Try to upload the image
+    const featuredImageId = await uploadImageToStrapi(postData.featuredImgInfo);
+    
+    if (featuredImageId) {
+      // If it's a number, it's an ID from the media library
+      if (typeof featuredImageId === 'number') {
+        processedData.FeaturedImg = featuredImageId;
+      } 
+      // If it's a string, it might be a URL to directly use
+      else if (typeof featuredImageId === 'string') {
+        processedData.FeaturedImgUrl = featuredImageId;
+      }
+    } else if (postData.featuredImgSrc) {
+      // If upload fails but we have the original URL, use that
+      processedData.FeaturedImgUrl = postData.featuredImgSrc;
+    }
+  } else if (postData.featuredImgSrc) {
+    // If no local image but we have the URL, use that
+    processedData.FeaturedImgUrl = postData.featuredImgSrc;
+  }
   
   try {
     console.log(`Updating blog post with ID ${id}...`);
@@ -200,8 +338,9 @@ async function processBlogPost(postData) {
     const { exists, id } = await checkBlogPostExists(postData.Slug);
     
     if (exists && id) {
-      // Update the existing blog post
-      return await updateBlogPost(id, postData);
+      // Skip updating existing blog post
+      console.log(`Blog post with slug "${postData.Slug}" already exists. Skipping update as requested.`);
+      return { skipped: true, slug: postData.Slug };
     } else {
       // Create a new blog post
       return await createBlogPost(postData);
@@ -218,17 +357,26 @@ async function processBlogPost(postData) {
 async function processBlogPosts(posts) {
   console.log(`Processing ${posts.length} blog posts...`);
   const results = [];
+  const skipped = [];
   
   for (const post of posts) {
     try {
       const result = await processBlogPost(post);
-      results.push(result);
+      if (result.skipped) {
+        skipped.push(post.Slug);
+      } else {
+        results.push(result);
+      }
     } catch (error) {
       console.error(`Failed to process blog post with slug "${post.Slug}". Continuing with next post.`);
       // Continue with other posts instead of stopping the whole process
     }
   }
   
+  // We no longer clean up temporary images as requested
+  // cleanupTempImages();
+  
+  console.log(`Skipped ${skipped.length} existing blog posts.`);
   return results;
 }
 
@@ -258,10 +406,16 @@ async function processBlogPosts(posts) {
     // Process the blog posts
     const results = await processBlogPosts(blogPostsToProcess);
     
-    console.log(`Successfully processed ${results.length} out of ${blogPostsToProcess.length} blog posts.`);
+    console.log(`Successfully created ${results.length} out of ${blogPostsToProcess.length} blog posts.`);
     
   } catch (error) {
     console.error("Failed to process blog posts:", error);
     process.exit(1);
   }
-})(); 
+})();
+
+// Export functions for testing
+module.exports = {
+  processBlogPost,
+  uploadImageToStrapi
+}; 

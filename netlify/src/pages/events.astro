@@ -2,16 +2,19 @@
 import CallToAction from '../components/CallToAction.astro';
 import PrimaryLayout from '../layouts/PrimaryLayout.astro';
 
-const baseUrl = import.meta.env.STRAPI_URL_TWO;
-const token = import.meta.env.ASTRO_APP_API_TOKEN_TWO;
+const baseUrl = import.meta.env.STRAPI_URL;
+const token = import.meta.env.ASTRO_APP_API_TOKEN;
 
-const response = await fetch(`${baseUrl}/api/pages?populate[event][populate]=*`, {
+const response = await fetch(`${baseUrl}/api/pages?filters[slug][$eq]=events&populate[event][populate]=*`, {
   headers: {
     'Authorization': `Bearer ${token}`
   }
 });
 
 const { data } = await response.json();
+if (!data?.[0]) {
+  return Astro.redirect('/404');
+}
 const Event = data[0].event.find((item: any) => item.__component === "event.event");
 const seoData = data[0].event.find((item: any) => item.__component === "event-seo.event-seo");
 
@@ -28,7 +31,9 @@ interface ContentBlock {
   format?: 'ordered' | 'unordered';
   children: ContentChild[];
 }
-
+if (!Event) {
+  return Astro.redirect('/404');
+}
 const typedContent = Event.content as ContentBlock[];
 ---
 

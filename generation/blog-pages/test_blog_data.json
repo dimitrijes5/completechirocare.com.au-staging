@@ -1,0 +1,19 @@
+[
+  {
+    "Title": "Test Blog Post",
+    "Slug": "test-blog-post",
+    "Content": [
+      {
+        "type": "paragraph",
+        "children": [
+          {
+            "type": "text",
+            "text": "This is a test blog post to verify image upload functionality."
+          }
+        ]
+      }
+    ],
+    "date": "2023-05-01",
+    "featuredImgSrc": "https://www.completechirocare.com.au/assets/img/logo_original.png"
+  }
+] 
