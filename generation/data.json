@@ -10,14 +10,14 @@
         "CTA2": "Call Us Now",
         "HowItWorks": "See How It Works",
         "background": {
-          "url": "/uploads/about1_4c0f90e1e7.png",
-          "id": 22,
+          "url": "/uploads/about1_d23ce1afa3.png",
+          "id": 87,
           "width": 1105,
           "height": 473,
           "formats": {
             "thumbnail": {
               "name": "thumbnail_about1.png",
-              "hash": "thumbnail_about1_4c0f90e1e7",
+              "hash": "thumbnail_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -25,11 +25,11 @@
               "height": 105,
               "size": 56.44,
               "sizeInBytes": 56440,
-              "url": "/uploads/thumbnail_about1_4c0f90e1e7.png"
+              "url": "/uploads/thumbnail_about1_d23ce1afa3.png"
             },
             "small": {
               "name": "small_about1.png",
-              "hash": "small_about1_4c0f90e1e7",
+              "hash": "small_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -37,11 +37,11 @@
               "height": 214,
               "size": 203.67,
               "sizeInBytes": 203669,
-              "url": "/uploads/small_about1_4c0f90e1e7.png"
+              "url": "/uploads/small_about1_d23ce1afa3.png"
             },
             "medium": {
               "name": "medium_about1.png",
-              "hash": "medium_about1_4c0f90e1e7",
+              "hash": "medium_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -49,11 +49,11 @@
               "height": 321,
               "size": 431.61,
               "sizeInBytes": 431606,
-              "url": "/uploads/medium_about1_4c0f90e1e7.png"
+              "url": "/uploads/medium_about1_d23ce1afa3.png"
             },
             "large": {
               "name": "large_about1.png",
-              "hash": "large_about1_4c0f90e1e7",
+              "hash": "large_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -61,7 +61,7 @@
               "height": 428,
               "size": 724.58,
               "sizeInBytes": 724579,
-              "url": "/uploads/large_about1_4c0f90e1e7.png"
+              "url": "/uploads/large_about1_d23ce1afa3.png"
             }
           }
         }
@@ -73,14 +73,14 @@
         "SecondSentence": "As the leading chiropractic clinic in Sydney's Northern Beaches, our chiropractors have an extensive range of experience across multiple treatment modalities. Ours is one of the few Australian clinics to offer Advanced Biostructural Correction (ABC). This treatment method is known to gradually unwind previous injuries and traumas and can help you optimise your health. At Complete Chiropractic, we target pain and injuries at their source. We take a holistic approach to help you achieve better health. Alongside our breakthrough range of chiropractic treatments, we'll address your lifestyle habits, posture, and diet to enhance your wellness and bring you closer to reducing chronic pain.",
         "CTA": "Read More",
         "img1": {
-          "url": "/uploads/about1_4c0f90e1e7.png",
-          "id": 22,
+          "url": "/uploads/about1_d23ce1afa3.png",
+          "id": 87,
           "width": 1105,
           "height": 473,
           "formats": {
             "thumbnail": {
               "name": "thumbnail_about1.png",
-              "hash": "thumbnail_about1_4c0f90e1e7",
+              "hash": "thumbnail_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -88,11 +88,11 @@
               "height": 105,
               "size": 56.44,
               "sizeInBytes": 56440,
-              "url": "/uploads/thumbnail_about1_4c0f90e1e7.png"
+              "url": "/uploads/thumbnail_about1_d23ce1afa3.png"
             },
             "small": {
               "name": "small_about1.png",
-              "hash": "small_about1_4c0f90e1e7",
+              "hash": "small_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -100,11 +100,11 @@
               "height": 214,
               "size": 203.67,
               "sizeInBytes": 203669,
-              "url": "/uploads/small_about1_4c0f90e1e7.png"
+              "url": "/uploads/small_about1_d23ce1afa3.png"
             },
             "medium": {
               "name": "medium_about1.png",
-              "hash": "medium_about1_4c0f90e1e7",
+              "hash": "medium_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -112,11 +112,11 @@
               "height": 321,
               "size": 431.61,
               "sizeInBytes": 431606,
-              "url": "/uploads/medium_about1_4c0f90e1e7.png"
+              "url": "/uploads/medium_about1_d23ce1afa3.png"
             },
             "large": {
               "name": "large_about1.png",
-              "hash": "large_about1_4c0f90e1e7",
+              "hash": "large_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -124,26 +124,26 @@
               "height": 428,
               "size": 724.58,
               "sizeInBytes": 724579,
-              "url": "/uploads/large_about1_4c0f90e1e7.png"
+              "url": "/uploads/large_about1_d23ce1afa3.png"
             }
           }
         },
         "img2": {
-          "url": "/uploads/about2_6eb7a830f0.png",
-          "id": 23,
+          "url": "/uploads/about2_8691eecb0c.png",
+          "id": 88,
           "width": 157,
           "height": 156,
           "formats": null
         },
         "img3": {
-          "url": "/uploads/about3_09149f6fa6.png",
-          "id": 24,
+          "url": "/uploads/about3_d91c321104.png",
+          "id": 89,
           "width": 488,
           "height": 280,
           "formats": {
             "thumbnail": {
               "name": "thumbnail_about3.png",
-              "hash": "thumbnail_about3_09149f6fa6",
+              "hash": "thumbnail_about3_d91c321104",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -151,7 +151,7 @@
               "height": 141,
               "size": 81.53,
               "sizeInBytes": 81525,
-              "url": "/uploads/thumbnail_about3_09149f6fa6.png"
+              "url": "/uploads/thumbnail_about3_d91c321104.png"
             }
           }
         }
@@ -175,22 +175,22 @@
         "ThirdTitle": "We can reduce pain in just one visit",
         "ThirdDesc": "At Complete Chiropractic, we target pain and injuries at their source. We take a holistic approach to help you achieve better health.",
         "firstIcon": {
-          "url": "/uploads/image1_9142defea9.png",
-          "id": 27,
+          "url": "/uploads/image1_b0c88e9157.png",
+          "id": 100,
           "width": 71,
           "height": 71,
           "formats": null
         },
         "secondIcon": {
-          "url": "/uploads/image2_9bd2a8115b.png",
-          "id": 28,
+          "url": "/uploads/image2_57a671163e.png",
+          "id": 101,
           "width": 68,
           "height": 68,
           "formats": null
         },
         "ThirdIcon": {
-          "url": "/uploads/image3_3b04ad9462.png",
-          "id": 29,
+          "url": "/uploads/image3_f30eea3812.png",
+          "id": 102,
           "width": 81,
           "height": 80,
           "formats": null
@@ -203,14 +203,14 @@
         "Sentance2": " Our expertise includes treating patients using a holistic approach that acknowledges the interconnectivity of a person's physical and non-physical function. Our personalised treatment plans address both the mechanical function and vitalistic changes to achieve optimal wellness. We have a passion for helping mothers, who are experiencing the physical and emotional stresses of motherhood, and children and infants. ",
         "PhoneNumber": "(02) 99720040",
         "img": {
-          "url": "/uploads/about1_4c0f90e1e7.png",
-          "id": 22,
+          "url": "/uploads/about1_d23ce1afa3.png",
+          "id": 87,
           "width": 1105,
           "height": 473,
           "formats": {
             "thumbnail": {
               "name": "thumbnail_about1.png",
-              "hash": "thumbnail_about1_4c0f90e1e7",
+              "hash": "thumbnail_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -218,11 +218,11 @@
               "height": 105,
               "size": 56.44,
               "sizeInBytes": 56440,
-              "url": "/uploads/thumbnail_about1_4c0f90e1e7.png"
+              "url": "/uploads/thumbnail_about1_d23ce1afa3.png"
             },
             "small": {
               "name": "small_about1.png",
-              "hash": "small_about1_4c0f90e1e7",
+              "hash": "small_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -230,11 +230,11 @@
               "height": 214,
               "size": 203.67,
               "sizeInBytes": 203669,
-              "url": "/uploads/small_about1_4c0f90e1e7.png"
+              "url": "/uploads/small_about1_d23ce1afa3.png"
             },
             "medium": {
               "name": "medium_about1.png",
-              "hash": "medium_about1_4c0f90e1e7",
+              "hash": "medium_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -242,11 +242,11 @@
               "height": 321,
               "size": 431.61,
               "sizeInBytes": 431606,
-              "url": "/uploads/medium_about1_4c0f90e1e7.png"
+              "url": "/uploads/medium_about1_d23ce1afa3.png"
             },
             "large": {
               "name": "large_about1.png",
-              "hash": "large_about1_4c0f90e1e7",
+              "hash": "large_about1_d23ce1afa3",
               "ext": ".png",
               "mime": "image/png",
               "path": null,
@@ -254,14 +254,42 @@
               "height": 428,
               "size": 724.58,
               "sizeInBytes": 724579,
-              "url": "/uploads/large_about1_4c0f90e1e7.png"
+              "url": "/uploads/large_about1_d23ce1afa3.png"
             }
           }
         }
       },
       {
         "__component": "featured-section.featured-section",
-        "Title": "Our Features"
+        "Title": "We've Been Featured In",
+        "img1": {
+          "url": "/uploads/img1_abd74334ef.jpg",
+          "id": 90,
+          "width": 245,
+          "height": 40,
+          "formats": null
+        },
+        "img2": {
+          "url": "/uploads/img2_c9ff65c724.jpg",
+          "id": 91,
+          "width": 245,
+          "height": 52,
+          "formats": null
+        },
+        "img3": {
+          "url": "/uploads/img3_737c80830d.jpg",
+          "id": 92,
+          "width": 92,
+          "height": 92,
+          "formats": null
+        },
+        "img4": {
+          "url": "/uploads/img4_da0cc96e24.jpg",
+          "id": 93,
+          "width": 245,
+          "height": 65,
+          "formats": null
+        }
       },
       {
         "__component": "services.services"
@@ -269,17 +297,126 @@
       {
         "__component": "goals.goals",
         "firstTitle": "Our Goal",
-        "mainTitle": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
-        "title1": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
-        "desc1": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
-        "title2": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
-        "desc2": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
-        "title3": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients.",
-        "desc3": "We are a team of experienced chiropractors who are dedicated to providing the best care for our patients."
+        "mainTitle": "Our Mission for Your Health",
+        "title1": "Freedom",
+        "desc1": "We can assist with managing various injuries and illnesses to lessen your pain and discomfort, thus enhancing your mobility and enabling you to be more active.",
+        "title2": "Posture",
+        "desc2": "70% of the body's energy is used to counteract gravity. We treat the underlying factors contributing to poor posture and you may see a positive change in posture in just one visit.",
+        "title3": "Better movement",
+        "desc3": "We can help you manage a range of injuries and illness, that may reduce your pain and discomfort therefore giving you greater mobility and the freedom to be as active as possible. ",
+        "img1": {
+          "url": "/uploads/img1_370a64cae5.png",
+          "id": 94,
+          "width": 72,
+          "height": 72,
+          "formats": null
+        },
+        "img2": {
+          "url": "/uploads/img2_5a142db1fe.png",
+          "id": 95,
+          "width": 72,
+          "height": 72,
+          "formats": null
+        },
+        "img3": {
+          "url": "/uploads/img3_fab1ffaaad.png",
+          "id": 96,
+          "width": 81,
+          "height": 80,
+          "formats": null
+        }
       },
       {
         "__component": "map.map",
-        "HoursTitle": "Hours"
+        "HoursTitle": "Hours",
+        "Hours": [
+          {
+            "day": "Monday",
+            "time": "7:30am – 7:00pm",
+            "space": "1"
+          },
+          {
+            "day": "Tuesday",
+            "time": "7:30am – 7:00pm",
+            "space": "1"
+          },
+          {
+            "day": "Wednesday",
+            "time": "7:30am – 6:30pm",
+            "space": "1"
+          },
+          {
+            "day": "Thursday",
+            "time": "7:30am – 5:30pm",
+            "space": "1"
+          },
+          {
+            "day": "Friday",
+            "time": "7:30am – 1:00pm",
+            "space": "1"
+          },
+          {
+            "day": "Saturday",
+            "time": "8:00am – 12:00pm",
+            "space": "1"
+          }
+        ],
+        "backgorund": {
+          "url": "/uploads/map_ea8dd8c1e9.jpg",
+          "id": 43,
+          "width": 1920,
+          "height": 667,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_map.jpg",
+              "hash": "thumbnail_map_ea8dd8c1e9",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 245,
+              "height": 85,
+              "size": 4.93,
+              "sizeInBytes": 4927,
+              "url": "/uploads/thumbnail_map_ea8dd8c1e9.jpg"
+            },
+            "large": {
+              "name": "large_map.jpg",
+              "hash": "large_map_ea8dd8c1e9",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 1000,
+              "height": 347,
+              "size": 53.44,
+              "sizeInBytes": 53443,
+              "url": "/uploads/large_map_ea8dd8c1e9.jpg"
+            },
+            "medium": {
+              "name": "medium_map.jpg",
+              "hash": "medium_map_ea8dd8c1e9",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 750,
+              "height": 261,
+              "size": 32.92,
+              "sizeInBytes": 32915,
+              "url": "/uploads/medium_map_ea8dd8c1e9.jpg"
+            },
+            "small": {
+              "name": "small_map.jpg",
+              "hash": "small_map_ea8dd8c1e9",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "path": null,
+              "width": 500,
+              "height": 173,
+              "size": 16.39,
+              "sizeInBytes": 16389,
+              "url": "/uploads/small_map_ea8dd8c1e9.jpg"
+            }
+          }
+        }
       },
       {
         "__component": "last-section.last-section",
@@ -288,58 +425,34 @@
         "number": "(02) 99720040",
         "CTA": "Book Appointment",
         "img": {
-          "url": "/uploads/about1_4c0f90e1e7.png",
-          "id": 22,
-          "width": 1105,
-          "height": 473,
+          "url": "/uploads/image_97e01a4e2c.jpg",
+          "id": 97,
+          "width": 608,
+          "height": 456,
           "formats": {
             "thumbnail": {
-              "name": "thumbnail_about1.png",
-              "hash": "thumbnail_about1_4c0f90e1e7",
-              "ext": ".png",
-              "mime": "image/png",
+              "name": "thumbnail_image.jpg",
+              "hash": "thumbnail_image_97e01a4e2c",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
               "path": null,
-              "width": 245,
-              "height": 105,
-              "size": 56.44,
-              "sizeInBytes": 56440,
-              "url": "/uploads/thumbnail_about1_4c0f90e1e7.png"
+              "width": 208,
+              "height": 156,
+              "size": 8.01,
+              "sizeInBytes": 8006,
+              "url": "/uploads/thumbnail_image_97e01a4e2c.jpg"
             },
             "small": {
-              "name": "small_about1.png",
-              "hash": "small_about1_4c0f90e1e7",
-              "ext": ".png",
-              "mime": "image/png",
+              "name": "small_image.jpg",
+              "hash": "small_image_97e01a4e2c",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
               "path": null,
               "width": 500,
-              "height": 214,
-              "size": 203.67,
-              "sizeInBytes": 203669,
-              "url": "/uploads/small_about1_4c0f90e1e7.png"
-            },
-            "medium": {
-              "name": "medium_about1.png",
-              "hash": "medium_about1_4c0f90e1e7",
-              "ext": ".png",
-              "mime": "image/png",
-              "path": null,
-              "width": 750,
-              "height": 321,
-              "size": 431.61,
-              "sizeInBytes": 431606,
-              "url": "/uploads/medium_about1_4c0f90e1e7.png"
-            },
-            "large": {
-              "name": "large_about1.png",
-              "hash": "large_about1_4c0f90e1e7",
-              "ext": ".png",
-              "mime": "image/png",
-              "path": null,
-              "width": 1000,
-              "height": 428,
-              "size": 724.58,
-              "sizeInBytes": 724579,
-              "url": "/uploads/large_about1_4c0f90e1e7.png"
+              "height": 375,
+              "size": 38.17,
+              "sizeInBytes": 38173,
+              "url": "/uploads/small_image_97e01a4e2c.jpg"
             }
           }
         }
