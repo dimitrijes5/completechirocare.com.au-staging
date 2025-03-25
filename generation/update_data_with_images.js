@@ -75,12 +75,8 @@ const componentMappings = {
     'img4': { folder: 'featured', pattern: 'img4' }
   },
   
-  // Services component mapping
-  'services.services': {
-    'section': {
-      'img': { folder: 'services', pattern: 'service' }
-    }
-  },
+  // Services component mapping - No images for service sections
+  'services.services': { },
   
   // Goals component mapping
   'goals.goals': {
@@ -289,6 +285,23 @@ function updateDataWithImages(obj, currentComponent = null) {
     if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
     
     const value = obj[key];
+    
+    // Skip image fields in services.services section component
+    if (currentComponent === 'services.services' && key === 'section') {
+      console.log(`Skipping image fields for services.services section as requested`);
+      // Still process any other nested objects and arrays in 'section'
+      if (value && typeof value === 'object') {
+        // Just recurse but don't update any image fields
+        updateCount += updateDataWithImages(value, 'services.services.section');
+      }
+      continue;
+    }
+    
+    // Skip image processing for the specially marked services.services.section component
+    if (currentComponent === 'services.services.section' && isImageField(key)) {
+      console.log(`Skipping image field '${key}' in services section`);
+      continue;
+    }
     
     // Image field detection
     if (isImageField(key) && currentComponent) {

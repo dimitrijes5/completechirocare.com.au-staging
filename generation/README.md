@@ -24,7 +24,7 @@ generation/
 ├── images/
 │   ├── hero/               # Hero component images
 │   ├── about/              # About component images
-│   ├── services/           # Services component images
+│   ├── services/           # Services component images (not used for sections)
 │   ├── teams-part/         # Team members images
 │   ├── featured/           # Featured section images
 │   ├── goals/              # Goals section images
@@ -50,12 +50,16 @@ The scripts use the following mapping between components and image fields:
 | why-choose | firstIcon, secondIcon, ThirdIcon | why-choose-us | image1, image2, image3 |
 | let-us-help-you | img | let-us-help-you | help |
 | featured-section | img1, img2, img3, img4 | featured | img1, img2, img3, img4 |
-| services | section.img | services | service |
+| services | (images skipped for sections) | - | - |
 | goals | img1, img2, img3 | goals | img1, img2, img3 |
 | map | backgorund | map | map |
 | last-section | img | last-section | image |
 | consultation | img | consultation | consultation |
 | teams-part | memberOneImg, memberTwoImg, etc. | teams-part | member1, member2, etc. |
+
+## Special Cases
+
+- **Service Sections**: Image fields within the `section` array of the `services.services` component are intentionally skipped. No images will be updated for these sections.
 
 ## Usage
 
@@ -91,6 +95,7 @@ This will:
 - Create a backup of your original `data.json` as `data.json.backup`
 - Update image references in `data.json` with the uploaded image URLs
 - Use the component mapping to match the right images to each field
+- Skip updating images for service sections
 
 ### 4. Insert Data into Strapi
 

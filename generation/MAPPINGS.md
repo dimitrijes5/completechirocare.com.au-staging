@@ -46,6 +46,35 @@ Let's say you have a new "testimonial" component with image fields for client ph
    };
    ```
 
+## Skipping Images for Specific Components
+
+To skip image processing for a specific component, use an empty object as the mapping:
+
+```javascript
+// Skip all images for this component
+'component-name.component-name': { }
+```
+
+For more complex scenarios, you can add a special condition in the `updateDataWithImages` function. For example, to skip image processing for the services.services section fields:
+
+```javascript
+// In the updateDataWithImages function
+if (currentComponent === 'services.services' && key === 'section') {
+  console.log(`Skipping image fields for services.services section as requested`);
+  // Still process any other nested objects and arrays in 'section'
+  if (value && typeof value === 'object') {
+    updateCount += updateDataWithImages(value, 'services.services.section');
+  }
+  continue;
+}
+
+// Skip image processing for the specially marked section
+if (currentComponent === 'services.services.section' && isImageField(key)) {
+  console.log(`Skipping image field '${key}' in services section`);
+  continue;
+}
+```
+
 ## Example: Handling Nested Fields in Arrays
 
 If your component contains an array of objects with image fields, use a nested structure:
