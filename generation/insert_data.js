@@ -3,8 +3,8 @@ const fs = require("fs");
 require("dotenv").config();
 
 // Use environment variables instead of hardcoded values
-const ADMIN_API_TOKEN = process.env.TOKEN;
-const STRAPI_URL = process.env.URL;
+const ADMIN_API_TOKEN = process.env.REAL_TOKEN;
+const STRAPI_URL = process.env.REAL_URL;
 
 /**
  * Process data to make it Strapi-compatible

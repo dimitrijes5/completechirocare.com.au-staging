@@ -3,8 +3,11 @@ const fs = require("fs");
 require("dotenv").config();
 
 // Use environment variables instead of hardcoded values
-const ADMIN_API_TOKEN = process.env.TOKEN;
-const STRAPI_URL = process.env.URL;
+const ADMIN_API_TOKEN = process.env.REAL_TOKEN;
+// Use the correct API URL directly from environment variables
+const STRAPI_API_URL = process.env.REAL_URL;
+
+console.log(`Using Strapi API at: ${STRAPI_API_URL}`);
 
 /**
  * Process data to make it Strapi-compatible
@@ -61,7 +64,7 @@ async function checkApproachPageExists(slug) {
     
     // URL encode the slug to handle special characters
     const encodedSlug = encodeURIComponent(slug);
-    const url = `${STRAPI_URL}/api/approach-pages?filters[Slug][$eq]=${encodedSlug}`;
+    const url = `${STRAPI_API_URL}/api/approach-pages?filters[Slug][$eq]=${encodedSlug}`;
     
     console.log(`Querying: ${url}`);
     
@@ -98,12 +101,24 @@ async function checkApproachPageExists(slug) {
  * Create a new approach page in Strapi
  */
 async function createApproachPage(pageData) {
-  const processedData = processDataForStrapi(pageData);
-  
   try {
+    // First check if the page already exists to avoid 405 Method Not Allowed errors
+    const { exists, id } = await checkApproachPageExists(pageData.Slug);
+    
+    if (exists && id) {
+      console.log(`Page with slug "${pageData.Slug}" already exists, updating instead...`);
+      return await updateApproachPage(id, pageData);
+    }
+    
+    // If page doesn't exist, proceed with creation
+    const processedData = processDataForStrapi(pageData);
+    
     console.log(`Creating new approach page with slug "${pageData.Slug}"...`);
     
-    const response = await fetch(`${STRAPI_URL}/api/approach-pages`, {
+    const url = `${STRAPI_API_URL}/api/approach-pages`;
+    console.log(`POST URL: ${url}`);
+    
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -157,7 +172,7 @@ async function updateApproachPage(id, pageData) {
   try {
     console.log(`Updating approach page with ID ${id}...`);
     
-    const url = `${STRAPI_URL}/api/approach-pages/${id}`;
+    const url = `${STRAPI_API_URL}/api/approach-pages/${id}`;
     console.log(`Using URL: ${url}`);
     
     const response = await fetch(url, {

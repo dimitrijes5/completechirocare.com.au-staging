@@ -7,8 +7,8 @@ const fetch = require('node-fetch');
 require('dotenv').config();
 
 // Use environment variables for Strapi connection
-const ADMIN_API_TOKEN = process.env.TOKEN;
-const STRAPI_URL = process.env.URL;
+const ADMIN_API_TOKEN = process.env.REAL_TOKEN;
+const STRAPI_URL = process.env.REAL_URL;
 
 // Validate required environment variables
 if (!ADMIN_API_TOKEN || !STRAPI_URL) {
