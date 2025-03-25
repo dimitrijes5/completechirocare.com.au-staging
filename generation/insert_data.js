@@ -110,7 +110,7 @@ async function insertPages(pages) {
  */
 (async () => {
   // Example data array structured according to Strapi schema
-  const pagesToInsert = JSON.parse(fs.readFileSync("data.json", "utf8"));
+  const pagesToInsert = JSON.parse(fs.readFileSync("data_and_images/data.json", "utf8"));
 
   try {
     // Insert the pages
