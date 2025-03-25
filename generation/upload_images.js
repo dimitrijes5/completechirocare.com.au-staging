@@ -6,22 +6,33 @@ const fetch = require('node-fetch');
 // Load environment variables from .env file
 require('dotenv').config();
 
-// Use environment variables instead of hardcoded values
+// Use environment variables for Strapi connection
 const ADMIN_API_TOKEN = process.env.TOKEN;
 const STRAPI_URL = process.env.URL;
 
+// Validate required environment variables
+if (!ADMIN_API_TOKEN || !STRAPI_URL) {
+  console.error('Error: Missing required environment variables. Please check your .env file.');
+  console.error('Required variables: TOKEN, URL');
+  process.exit(1);
+}
+
 /**
  * Upload a single image to Strapi media library
+ * 
+ * @param {string} filePath - Path to the image file
+ * @param {string} componentType - Optional component type for logging context
+ * @returns {Object} - Uploaded file metadata from Strapi
  */
-async function uploadImage(filePath) {
+async function uploadImage(filePath, componentType = null) {
   try {
-    console.log(`Uploading image: ${filePath}`);
+    const fileName = path.basename(filePath);
+    const contextMsg = componentType ? `(${componentType})` : '';
+    console.log(`Uploading image: ${fileName} ${contextMsg}`);
     
+    // Create form data for the file upload
     const formData = new FormData();
     const fileStream = fs.createReadStream(filePath);
-    
-    // Get filename from path
-    const fileName = path.basename(filePath);
     
     // Add the file to the form data with its original filename
     formData.append('files', fileStream, {
@@ -29,42 +40,45 @@ async function uploadImage(filePath) {
       contentType: getContentType(fileName)
     });
     
-    console.log(`Sending request to ${STRAPI_URL}/api/upload with file: ${fileName}`);
-    
+    // Send the upload request to Strapi
     const response = await fetch(`${STRAPI_URL}/api/upload`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${ADMIN_API_TOKEN}`,
-        // Let form-data set its own content-type with boundary
       },
       body: formData,
     });
 
+    // Read response text for better error handling
     const responseText = await response.text();
     
     if (!response.ok) {
-      console.error(`Error response status: ${response.status} ${response.statusText}`);
-      console.error(`Response body: ${responseText}`);
+      console.error(`Error uploading ${fileName}: Status ${response.status} ${response.statusText}`);
+      console.error(`Response: ${responseText.substring(0, 500)}${responseText.length > 500 ? '...' : ''}`);
       throw new Error(`Failed to upload image: ${response.statusText}`);
     }
 
     try {
+      // Parse the JSON response
       const result = JSON.parse(responseText);
-      console.log(`Image uploaded successfully. Response:`, JSON.stringify(result, null, 2).substring(0, 200) + '...');
+      console.log(`✅ Successfully uploaded ${fileName}`);
       return result[0]; // Strapi returns an array of uploaded files
     } catch (parseError) {
-      console.error('Error parsing JSON response:', parseError);
-      console.error('Raw response:', responseText);
+      console.error('Error parsing response:', parseError.message);
+      console.error('Raw response:', responseText.substring(0, 500));
       throw new Error('Failed to parse upload response');
     }
   } catch (error) {
-    console.error(`Error uploading image ${filePath}:`, error.message);
+    console.error(`❌ Error uploading ${path.basename(filePath)}:`, error.message);
     throw error;
   }
 }
 
 /**
  * Get content type based on file extension
+ * 
+ * @param {string} fileName - File name to determine content type from
+ * @returns {string} - MIME content type 
  */
 function getContentType(fileName) {
   const ext = path.extname(fileName).toLowerCase();
@@ -75,21 +89,36 @@ function getContentType(fileName) {
     '.png': 'image/png',
     '.gif': 'image/gif',
     '.webp': 'image/webp',
-    '.svg': 'image/svg+xml'
+    '.svg': 'image/svg+xml',
+    '.avif': 'image/avif'
   };
   
   return contentTypes[ext] || 'application/octet-stream';
 }
 
 /**
- * Upload all images from a directory recursively
+ * Upload all images from a directory recursively with component context
+ * 
+ * @param {string} dirPath - Path to the directory to process
+ * @param {Object} uploadedImages - Object to store uploaded image results
+ * @returns {Object} - Updated uploadedImages object
  */
 async function uploadImagesFromDir(dirPath, uploadedImages = {}) {
-  console.log(`Scanning directory: ${dirPath}`);
+  console.log(`\nScanning directory: ${dirPath}`);
   
   try {
     const files = fs.readdirSync(dirPath);
+    const componentType = path.basename(dirPath);
     
+    // Count images in this directory
+    const imageFiles = files.filter(file => {
+      const ext = path.extname(file).toLowerCase();
+      return ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.avif'].includes(ext);
+    });
+    
+    console.log(`Found ${imageFiles.length} images in ${componentType} directory`);
+    
+    // Process each file
     for (const file of files) {
       const fullPath = path.join(dirPath, file);
       const stat = fs.statSync(fullPath);
@@ -100,24 +129,35 @@ async function uploadImagesFromDir(dirPath, uploadedImages = {}) {
       } else {
         // Check if file is an image based on extension
         const ext = path.extname(file).toLowerCase();
-        if (['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'].includes(ext)) {
+        if (['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.avif'].includes(ext)) {
           try {
-            const uploadResult = await uploadImage(fullPath);
+            // Upload the image with component context
+            const uploadResult = await uploadImage(fullPath, componentType);
             
-            // Store the result with a key based on the relative path from the images directory
-            const relativePath = path.relative(path.join(__dirname, 'images'), fullPath);
+            // Generate multiple keys for flexible lookups
+            
+            // 1. Key based on relative path from the images directory
+            const imagesBasePath = path.join(__dirname, 'images');
+            const relativePath = path.relative(imagesBasePath, fullPath);
             uploadedImages[relativePath] = uploadResult;
             
-            // Add a simpler key with just the filename for easier lookup
+            // 2. Key with just the filename for simpler lookup
             uploadedImages[file] = uploadResult;
             
-            // Also add folder/filename format
-            const parentFolder = path.basename(path.dirname(fullPath));
-            uploadedImages[`${parentFolder}/${file}`] = uploadResult;
+            // 3. Key with componentType/filename format
+            uploadedImages[`${componentType}/${file}`] = uploadResult;
             
-            console.log(`Stored image with keys: ${relativePath}, ${file}, ${parentFolder}/${file}`);
+            // 4. Special handling for numbered images (e.g., image1.jpg)
+            const nameMatch = file.match(/^([a-zA-Z]+)(\d+)\.([a-zA-Z]+)$/);
+            if (nameMatch) {
+              const [_, prefix, number, _ext] = nameMatch;
+              uploadedImages[`${componentType}_${prefix}${number}`] = uploadResult;
+              uploadedImages[`${prefix}${number}`] = uploadResult;
+            }
+            
+            console.log(`  - Stored with keys: ${relativePath}, ${file}, ${componentType}/${file}`);
           } catch (error) {
-            console.error(`Failed to upload ${fullPath}:`, error.message);
+            console.error(`  - Failed to upload ${file}:`, error.message);
           }
         }
       }
@@ -134,10 +174,13 @@ async function uploadImagesFromDir(dirPath, uploadedImages = {}) {
  */
 async function main() {
   const imagesDir = path.join(__dirname, 'images');
-  console.log(`Uploading all images from ${imagesDir}`);
+  console.log(`\n=== Starting image upload process ===`);
+  console.log(`Source directory: ${imagesDir}`);
+  console.log(`Target Strapi URL: ${STRAPI_URL}`);
   
+  // Validate images directory
   if (!fs.existsSync(imagesDir)) {
-    console.error(`Error: Images directory ${imagesDir} does not exist. Please create it and add your images.`);
+    console.error(`\nError: Images directory ${imagesDir} does not exist. Please create it and add your images.`);
     process.exit(1);
   }
   
@@ -145,22 +188,36 @@ async function main() {
     // Create an object to store uploaded image data
     const uploadedImages = {};
     
-    // Recursively upload all images
-    await uploadImagesFromDir(imagesDir, uploadedImages);
+    // List component directories
+    const componentDirs = fs.readdirSync(imagesDir);
+    console.log(`Found ${componentDirs.length} component directories: ${componentDirs.join(', ')}`);
     
-    if (Object.keys(uploadedImages).length === 0) {
-      console.warn('No images were uploaded. Check that your images directory contains image files.');
+    // Upload images from each component directory
+    for (const dir of componentDirs) {
+      const dirPath = path.join(imagesDir, dir);
+      if (fs.statSync(dirPath).isDirectory()) {
+        await uploadImagesFromDir(dirPath, uploadedImages);
+      }
+    }
+    
+    // Check results
+    const uniqueImages = new Set();
+    Object.values(uploadedImages).forEach(img => uniqueImages.add(img.id));
+    
+    if (uniqueImages.size === 0) {
+      console.warn('\nNo images were uploaded. Check that your images directory contains image files.');
     } else {
-      console.log(`Successfully uploaded ${Object.keys(uploadedImages).length / 3} images.`);
+      console.log(`\n✅ Successfully uploaded ${uniqueImages.size} unique images with ${Object.keys(uploadedImages).length} reference keys.`);
     }
     
     // Save the results to a file
     const outputFile = path.join(__dirname, 'uploaded_images.json');
     fs.writeFileSync(outputFile, JSON.stringify(uploadedImages, null, 2));
     
-    console.log(`All images uploaded successfully! Results saved to ${outputFile}`);
+    console.log(`\n✅ Results saved to ${outputFile}`);
+    console.log(`\nNext step: Run update_data_with_images.js to update your data.json file with these images.`);
   } catch (error) {
-    console.error('Failed to upload images:', error.message);
+    console.error('\n❌ Upload process failed:', error.message);
     process.exit(1);
   }
 }
