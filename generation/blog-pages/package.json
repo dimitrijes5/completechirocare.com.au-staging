@@ -1,0 +1,14 @@
+{
+  "name": "blog-pages-scraper",
+  "version": "1.0.0",
+  "description": "Scraper and data inserter for Complete Chirocare blog posts",
+  "main": "scrape_blog_pages.js",
+  "scripts": {
+    "scrape": "node scrape_blog_pages.js",
+    "insert": "node insert_blog_data.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12"
+  }
+} 
