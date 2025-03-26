@@ -17,7 +17,8 @@ interface Props {
 }
 
 const { mapData } = Astro.props;
-const { hours } = mapData.Hours;
+const hours  = mapData.Hours;
+console.log(hours);
 ---
 
 <section class="pb-24 relative">
@@ -36,13 +37,13 @@ const { hours } = mapData.Hours;
         <h1 class="font-extrabold lg:text-3xl lg:mt-11 lg:mr-16 max-lg:text-2xl">
             {mapData.HoursTitle}
         </h1>
-        <!-- <div class="text-start mt-3 lg:mt-4 lg:pl-[90px]">
+        <div class="text-start mt-3 lg:mt-4 lg:pl-[90px]">
             {hours.map(({ day, time, space }) => (
                 <div class="font-semibold text-lg mb-1 max-sm:text-base grid grid-cols-[100px_1fr] gap-4">
                     <span>{day}</span>
                     <span class={space}>{time}</span>
                 </div>
             ))}
-        </div> -->
+        </div>
     </div>
 </section>
