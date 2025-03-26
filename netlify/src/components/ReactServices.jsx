@@ -10,7 +10,7 @@ const ReactServices = ({ servicesData }) => {
   let hasReplacedHeadache = false;
   let hasReplacedMigraine = false;
 
-  const baseUrl = import.meta.env.STRAPI_URL_TWO;
+  const baseUrl = import.meta.env.STRAPI_URL;
   const fallbackImages = [
     "/backpain.jpg",
     "/pregnancy.jpg",

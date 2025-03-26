@@ -5,22 +5,33 @@ import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.jsx";
 
 // Fetch approach pages data (similar to PrimaryLayout)
-const baseUrl = import.meta.env.STRAPI_URL_TWO || 'http://localhost:1337';
-const token = import.meta.env.ASTRO_APP_API_TOKEN_TWO || '0cf6e4a98098d8d76bc11c497ad0243fd211c12ef1f5fa3b4f16bf07c4af1588b01da7c45931779570170e029b29f097347f0fd59b44a15ded963cfca985de5c5a889ae60728b98c347b9da5a597fe2ee5722bb5312c649eadcc16b28af3c9f0e4d66177e412e32f8dad02f56f0f30b18171c5fc0a2f163dc31536a2e15fb942';
+const baseUrl = import.meta.env.PUBLIC_STRAPI_URL || import.meta.env.STRAPI_URL;
+const token = import.meta.env.STRAPI_TOKEN;
 
-console.log(baseUrl, token);
-
-const response = await fetch(`${baseUrl}/api/approach-pages`, {
-  headers: {
-    'Authorization': `Bearer ${token}`
+let approachItems = [];
+try {
+  if (baseUrl) {
+    const response = await fetch(`${baseUrl}/api/approach-pages`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    if (response.ok) {
+      const { data } = await response.json();
+      approachItems = data.map((page: any) => ({
+        slug: page.Slug,
+        title: page.Title
+      }));
+    } else {
+      console.error(`Failed to fetch approach pages: ${response.status} ${response.statusText}`);
+    }
+  } else {
+    console.warn("Strapi URL is not defined.");
   }
-});
-
-const { data } = await response.json();
-const approachItems = data.map((page: any) => ({
-  slug: page.Slug,
-  title: page.Title
-}));
+} catch (error) {
+  console.error('Failed to fetch approach pages:', error);
+}
 
 interface Props {
     title?: string;

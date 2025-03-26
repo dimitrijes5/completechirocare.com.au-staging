@@ -15,15 +15,13 @@ import CallUs from '../components/CallUs.astro';
 import Map from '../components/Map.astro';
 
 const baseUrl = import.meta.env.STRAPI_URL;
-const token = import.meta.env.ASTRO_APP_API_TOKEN;
+const token = import.meta.env.STRAPI_TOKEN;
 
 const response = await fetch(`${baseUrl}/api/pages?populate[landing][populate]=*`, {
   headers: {
     'Authorization': `Bearer ${token}`
   }
 });
-
-
 
 const { data } = await response.json();
 const heroData = data[0].landing.find((component: { __component: string }) => component.__component === "hero-component.hero-component");
@@ -38,18 +36,14 @@ const goalsData = data[0].landing.find((component: { __component: string }) => c
 const teamsData = data[0].landing.find((component: { __component: string }) => component.__component === "teams-part.teams-part");
 const mapData = data[0].landing.find((component: { __component: string }) => component.__component === "map.map");
 const lastSectionData = data[0].landing.find((component: { __component: string }) => component.__component === "last-section.last-section");
-const seoData = {
-  SeoTitle: "Complete Chiro Care - Professional Chiropractic Services", 
-  SeoDesc: "Professional chiropractic care services offering personalized treatment plans for optimal health."
-};
-
+const seoData = data[0].landing.find((component: { __component: string }) => component.__component === "main-seo.main-seo");
 
 ---
 
 <Layout title={seoData?.SeoTitle} description={seoData?.SeoDesc}>
   <Hero heroData={heroData} />
   <About aboutData={aboutData} />
-  <Slider treatments={sliderData.treatments} />
+  <Slider client:load treatments={sliderData.treatments} />
   <ChooseUs whyChooseData={whyChooseData} />
   <HelpYou helpData={letUsHelpYouData} />
   <Featured featuredData={featuredSectionData} />

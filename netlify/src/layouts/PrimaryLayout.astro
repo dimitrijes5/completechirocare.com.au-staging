@@ -19,8 +19,8 @@ const {
 } = Astro.props; 
 
 // Fetch approach pages data
-const baseUrl = import.meta.env.STRAPI_URL_TWO;
-const token = import.meta.env.ASTRO_APP_API_TOKEN_TWO;
+const baseUrl = import.meta.env.STRAPI_URL;
+const token = import.meta.env.STRAPI_TOKEN;
 
 const response = await fetch(`${baseUrl}/api/approach-pages`, {
   headers: {

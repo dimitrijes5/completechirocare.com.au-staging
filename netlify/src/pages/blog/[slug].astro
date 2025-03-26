@@ -6,7 +6,7 @@ import PrimaryLayout from "../../layouts/PrimaryLayout.astro";
 
 const { slug } = Astro.params;
 const baseUrl = import.meta.env.STRAPI_URL;
-const token = import.meta.env.ASTRO_APP_API_TOKEN;
+const token = import.meta.env.STRAPI_TOKEN;
 
 const response = await fetch(`${baseUrl}/api/posts?filters[Slug][$eq]=${slug}&populate=*`, {
   headers: {

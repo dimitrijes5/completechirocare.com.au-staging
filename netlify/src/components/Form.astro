@@ -1,6 +1,6 @@
 ---
-const baseUrl = import.meta.env.STRAPI_URL_TWO;
-const token = import.meta.env.ASTRO_APP_API_TOKEN_TWO;
+const baseUrl = import.meta.env.STRAPI_URL;
+const token = import.meta.env.STRAPI_TOKEN;
 
 const response = await fetch(`${baseUrl}/api/pages?populate[Treatments][populate]=*`, {
   headers: {
@@ -89,9 +89,9 @@ const Treatments = data[0].Treatments.find((component: { __component: string }) 
         <button
           type="submit"
           class="bg-[#FF1493] text-white py-3 px-8 rounded-lg hover:bg-opacity-90 transition-colors mt-4 w-fit max-md:mx-auto md:ml-0"
-          data-original-text={Treatments ? Treatments.CTA : 'Submit inquiry'}
+          data-original-text={Treatments.CTA}
         >
-          {Treatments ? Treatments.CTA : 'Submit inquiry'}
+          {Treatments.CTA}
         </button>
       </form>
 <!-- 
