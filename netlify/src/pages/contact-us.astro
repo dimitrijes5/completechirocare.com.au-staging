@@ -41,11 +41,15 @@ const seoData = dataWithContact?.Contact.find((component: { __component: string 
         };
 
         try {
-            const response = await fetch(`https://complete.testingweblink.com/api/contact-forms`, {
+            const apiUrl = `https://api.completechirocare.com.au/api/contact-forms`;
+            console.log('Submitting form to URL:', apiUrl);
+            console.log('Form data:', data);
+            
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer 9156fdbf34c5c72ea74911b6a1c01136fe2f094ce2a73a05e400899f4790a3b6978c044daa4e8e947cadebfd529dc3a2cfa728fde817cae66ab7083b32961d299beb61a6df6efbd5bae9a8355d0afaa21dd05d34a256e8e6fd5e1007a2a585c7026bed8d68ae377e6fa17e3ea76078f422f3e8af79b27a0a1b39674431d24c40`
+                    'Authorization': `Bearer 2329bd1e30b05f2ccb8d7e2ee6b117fa3a4be9e21f158f2f99664fdd99d307ffda908a19a1904ebab75b62ce4a01e6317f8b4301203faf2612af176ec9c06f3d98a960c45c0b9c31f3c8fa15f89ef58eb4511f6be37b69d90c0e70e8f4be89d0c7e2183b906d7010d76a3b4ae0bd0406e82bb88c913161843fbf38c5412e90f0`
                 },
                 body: JSON.stringify({ data })
             });
