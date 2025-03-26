@@ -12,8 +12,9 @@ const response = await fetch(`${baseUrl}/api/pages?populate[Contact][populate]=*
 });
 
 const { data } = await response.json();
-const ContactData = data[0].Contact.find((component: { __component: string }) => component.__component === "contact-page.contact-page");
-const seoData = data[0].Contact.find((component: { __component: string }) => component.__component === "contact-page-seo.contact-page-seo");
+const dataWithContact = data.find((page: any) => page.Contact && page.Contact.length);
+const ContactData = dataWithContact?.Contact.find((component: { __component: string }) => component.__component === "contact-page.contact-page");
+const seoData = dataWithContact?.Contact.find((component: { __component: string }) => component.__component === "contact-page-seo.contact-page-seo");
 
 ---
 <script>

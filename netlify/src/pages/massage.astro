@@ -57,10 +57,11 @@ const response = await fetch(`${baseUrl}/api/pages?populate[message][populate]=*
 });
 
 const { data } = await response.json();
-const message = data[0].message.find((component: { __component: string }) => 
+const dataWithMessage = data.find((page: any) => page.message && page.message.length);
+const message = dataWithMessage?.message.find((component: { __component: string }) => 
   component.__component === "message-page.message-page"
 ) as MessageComponent;
-const seoData = data[0].message.find((component: { __component: string }) => 
+const seoData = dataWithMessage?.message.find((component: { __component: string }) => 
   component.__component === "message-seo.message-seo"
 );
 
@@ -80,6 +81,7 @@ const deeWhySections = message.Components.map(comp => {
   return comp.Json;
 }) as Section[];
 
+console.log(whyMassageData);
 ---
 
 <PrimaryLayout title={seoData?.SeoTitle} description={seoData?.SeoDesc}>
@@ -159,7 +161,7 @@ const deeWhySections = message.Components.map(comp => {
     </div>
   </div>
 
-  {/* Dee Why Sections */}
+  <!-- {/* Dee Why Sections */}
   <div class="max-w-[1860px] mx-auto xl:px-8">
     {deeWhySections.map(section => {
       // Handle both NavTitle and Navtitle cases
@@ -217,7 +219,7 @@ const deeWhySections = message.Components.map(comp => {
         </div>
       );
     })}
-  </div>
+  </div> -->
 
 </PrimaryLayout>
 
