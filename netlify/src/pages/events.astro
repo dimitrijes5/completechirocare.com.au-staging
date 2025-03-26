@@ -12,8 +12,10 @@ const response = await fetch(`${baseUrl}/api/pages?populate[event][populate]=*`,
 });
 
 const { data } = await response.json();
-const Event = data[0].event.find((item: any) => item.__component === "event.event");
-const seoData = data[0].event.find((item: any) => item.__component === "event-seo.event-seo");
+const pageWithEvent = data.find((page: any) => page.event && page.event.length);
+const Event = pageWithEvent?.event.find((item: any) => item.__component === "event.event");
+const seoData = pageWithEvent?.event.find((item: any) => item.__component === "event-seo.event-seo");
+
 
 interface ContentChild {
   type?: string;
