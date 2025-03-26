@@ -10,10 +10,11 @@ const response = await fetch(`${baseUrl}/api/pages?populate[team][populate]=*`, 
     'Authorization': `Bearer ${token}`
   }
 });
-
 const { data } = await response.json();
-const teamData = data[0].team[0]; // Using the second component which contains the data
-const seoData = data[0].team.find((component: { __component: string }) => component.__component === "team-seo.team-seo");
+const dataWithTeam = data.find((page: any) => page.team && page.team.length);
+
+const teamData = dataWithTeam?.team[0]; // Using the second component which contains the data
+const seoData = dataWithTeam?.team.find((component: { __component: string }) => component.__component === "team-seo.team-seo");
 
 const teamMembers = [
     {
@@ -49,17 +50,17 @@ const teamMembers = [
         image: `${baseUrl}${teamData.member3Img.url}`,
         imageAlt: teamData.member3Img?.alternativeText || teamData.member3Title
     },
-    {
-        slug: teamData.member4Title
-                .toLowerCase()
-                .replace(/^dr\s+/i, "")
-                .replace(/\s+/g, '-'),
-        name: teamData.member4Title,
-        title: teamData.member4Job,
-        description: teamData.member4Desc,
-        image: `${baseUrl}${teamData.member4Img.url}`,
-        imageAlt: teamData.member4Img?.alternativeText || teamData.member4Title
-    }
+    // {
+    //     slug: teamData.member4Title
+    //             .toLowerCase()
+    //             .replace(/^dr\s+/i, "")
+    //             .replace(/\s+/g, '-'),
+    //     name: teamData.member4Title,
+    //     title: teamData.member4Job,
+    //     description: teamData.member4Desc,
+    //     image: `${baseUrl}${teamData.member4Img.url}`,
+    //     imageAlt: teamData.member4Img?.alternativeText || teamData.member4Title
+    // }
 ];
 ---
 
@@ -85,7 +86,7 @@ const teamMembers = [
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
 
         <!-- Team Grid -->
         <div class="grid md:grid-cols-2 sm:grid-cols-1 gap-12 max-w-6xl mx-auto">

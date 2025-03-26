@@ -10,7 +10,9 @@ const response = await fetch(`${baseUrl}/api/pages?populate[team][populate]=*`, 
   headers: { Authorization: `Bearer ${token}` }
 });
 const { data } = await response.json();
-const teamData = data[0].team[0];
+const dataWithTeam = data.find((page: any) => page.team && page.team.length);
+const teamData = dataWithTeam?.team[0];
+console.log(teamData);
 
 const teamMembers = [
   {
@@ -37,14 +39,14 @@ const teamMembers = [
     image: `${baseUrl}${teamData.member3Img.url}`,
     imageAlt: teamData.member3Img?.alternativeText || teamData.member3Title
   },
-  {
-    slug: teamData.member4Title.toLowerCase().replace(/^dr\s+/i, "").replace(/\s+/g, "-"),
-    name: teamData.member4Title,
-    title: teamData.member4Job,
-    description: teamData.member4Desc,
-    image: `${baseUrl}${teamData.member4Img.url}`,
-    imageAlt: teamData.member4Img?.alternativeText || teamData.member4Title
-  }
+  // {
+  //   slug: teamData.member4Title.toLowerCase().replace(/^dr\s+/i, "").replace(/\s+/g, "-"),
+  //   name: teamData.member4Title,
+  //   title: teamData.member4Job,
+  //   description: teamData.member4Desc,
+  //   image: `${baseUrl}${teamData.member4Img.url}`,
+  //   imageAlt: teamData.member4Img?.alternativeText || teamData.member4Title
+  // }
 ];
 
 const member = teamMembers.find((m) => m.slug === slug);
