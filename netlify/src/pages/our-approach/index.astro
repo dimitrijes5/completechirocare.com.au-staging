@@ -15,9 +15,10 @@ const response = await fetch(`${baseUrl}/api/pages?populate[approach][populate]=
 });
 
 const { data } = await response.json();
-const approach = data[0].approach.find((item: any) => item.__component === "approach.approach");
-const whatToExpect = data[0].approach.find((item: any) => item.__component === "what-to-expect.what-to-expect");
-const seoData = data[0].approach.find((item: any) => item.__component === "approach-page-seo.approach-page-seo");
+const dataWithApproach = data.find((item: any) => item.approach !== null && item.approach.length && item.approach.length > 0);
+const approach = dataWithApproach.approach.find((item: any) => item.__component === "approach.approach");
+const whatToExpect = dataWithApproach.approach.find((item: any) => item.__component === "what-to-expect.what-to-expect");
+const seoData = dataWithApproach.approach.find((item: any) => item.__component === "approach-page-seo.approach-page-seo");
 
 // Extract video ID from URL (supports both full URLs and short URLs)
 const getYoutubeID = (url: string) => {
@@ -26,6 +27,7 @@ const getYoutubeID = (url: string) => {
   return (match && match[2].length === 11) ? match[2] : null;
 };
 
+console.log(approach);
 const videoId = getYoutubeID(approach.videoLink);
 ---
 
