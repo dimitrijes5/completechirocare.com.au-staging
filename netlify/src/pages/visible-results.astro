@@ -13,7 +13,8 @@ const response = await fetch(`${baseUrl}/api/pages?populate[About][populate]=*`,
 });
 
 const { data } = await response.json();
-const visibleData = data[0].About.find((component: { __component: string }) => component.__component === "visible-results-about.visible-results-about");
+const dataWithVisible = data.find((page: any) => page.About && page.About.length);
+const visibleData = dataWithVisible?.About.find((component: { __component: string }) => component.__component === "visible-results-about.visible-results-about");
 
 // Remove these lines
 const videoUrl = visibleData.VideoLink;
